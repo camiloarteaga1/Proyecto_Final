@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QWidget>
+#include <QKeyEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,11 +17,21 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    void keyPressEvent(QKeyEvent *Event);
     ~MainWindow();
 
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
-    //QGraphicsView *view;
+    QGraphicsView *view;
+
+    bool GameScreen;
+    bool Multiplayer;
+
+    QList<QList<Qt::Key>> PlayerKeys;
+    QList<Qt::Key> P1K, P2K;
+
+    // QList<Entity> Entities;
+
 };
 #endif // MAINWINDOW_H
