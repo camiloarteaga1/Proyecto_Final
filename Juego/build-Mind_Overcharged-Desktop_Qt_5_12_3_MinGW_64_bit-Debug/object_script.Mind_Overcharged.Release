@@ -1,0 +1,10 @@
+release/characterbody.o
+release/checkpoint.o
+release/data_game.o
+release/enemies.o
+release/main.o
+release/mainwindow.o
+release/user.o
+release/qrc_Recursos.o
+release/moc_mainwindow.o
+release/moc_user.o
