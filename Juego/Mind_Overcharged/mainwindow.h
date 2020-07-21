@@ -20,6 +20,9 @@ public:
     void keyPressEvent(QKeyEvent *Event);
     ~MainWindow();
 
+private slots:
+    void on_BRegister_clicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;

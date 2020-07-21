@@ -16,16 +16,37 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    boton.cpp \
     characterbody.cpp \
+    checkpoint.cpp \
+    data_game.cpp \
+    enemies.cpp \
+    esfera.cpp \
+    estrella.cpp \
+    hielo.cpp \
+    laser.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    portal.cpp \
+    user.cpp
 
 HEADERS += \
+    boton.h \
     characterbody.h \
-    mainwindow.h
+    checkpoint.h \
+    data_game.h \
+    enemies.h \
+    esfera.h \
+    estrella.h \
+    hielo.h \
+    laser.h \
+    mainwindow.h \
+    portal.h \
+    user.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    user.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
