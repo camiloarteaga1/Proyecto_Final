@@ -9,11 +9,11 @@ public:
     CharacterBody();
     void MoveBody(/*Obj Floor*/);
 
-    float Get_X(), Get_Y();
-    void Set_X(), Set_Y();
+    //float Get_X(), Get_Y();
+    //void Set_X(), Set_Y();
 
 private:
-    float X, Y, Accel_X, Accel_Y;
+    float /*X, Y,*/ Accel_X, Accel_Y;
 
 };
 

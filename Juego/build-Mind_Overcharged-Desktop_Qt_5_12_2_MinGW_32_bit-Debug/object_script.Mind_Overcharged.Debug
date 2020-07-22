@@ -10,9 +10,16 @@ debug/hielo.o
 debug/laser.o
 debug/main.o
 debug/mainwindow.o
+debug/platform.o
 debug/player.o
 debug/portal.o
 debug/user.o
 debug/qrc_Recursos.o
+debug/moc_characterhead.o
+debug/moc_enemies.o
+debug/moc_esfera.o
+debug/moc_estrella.o
 debug/moc_mainwindow.o
+debug/moc_platform.o
+debug/moc_portal.o
 debug/moc_user.o

@@ -7,6 +7,8 @@
 #include <QWidget>
 #include <QKeyEvent>
 
+#include "player.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -27,6 +29,7 @@ private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QGraphicsView *view;
+    QList<Player> Players;
 
     bool GameScreen;
     bool Multiplayer;

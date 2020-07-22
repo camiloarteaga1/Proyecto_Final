@@ -28,6 +28,7 @@ SOURCES += \
     laser.cpp \
     main.cpp \
     mainwindow.cpp \
+    platform.cpp \
     player.cpp \
     portal.cpp \
     user.cpp
@@ -44,6 +45,7 @@ HEADERS += \
     hielo.h \
     laser.h \
     mainwindow.h \
+    platform.h \
     player.h \
     portal.h \
     user.h

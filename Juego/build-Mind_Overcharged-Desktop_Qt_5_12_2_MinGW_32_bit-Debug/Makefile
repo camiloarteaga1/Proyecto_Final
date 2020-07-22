@@ -221,6 +221,7 @@ Makefile: ../Mind_Overcharged/Mind_Overcharged.pro C:/Users/Acer/AppData/Local/Q
 		C:/Users/Acer/AppData/Local/QT/5.12.2/mingw73_32/mkspecs/features/qt_config.prf \
 		C:/Users/Acer/AppData/Local/QT/5.12.2/mingw73_32/mkspecs/win32-g++/qmake.conf \
 		C:/Users/Acer/AppData/Local/QT/5.12.2/mingw73_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		C:/Users/Acer/AppData/Local/QT/5.12.2/mingw73_32/mkspecs/features/exclusive_builds.prf \
 		C:/Users/Acer/AppData/Local/QT/5.12.2/mingw73_32/mkspecs/features/toolchain.prf \
 		C:/Users/Acer/AppData/Local/QT/5.12.2/mingw73_32/mkspecs/features/default_pre.prf \
@@ -407,6 +408,7 @@ C:/Users/Acer/AppData/Local/QT/5.12.2/mingw73_32/mkspecs/features/qt_functions.p
 C:/Users/Acer/AppData/Local/QT/5.12.2/mingw73_32/mkspecs/features/qt_config.prf:
 C:/Users/Acer/AppData/Local/QT/5.12.2/mingw73_32/mkspecs/win32-g++/qmake.conf:
 C:/Users/Acer/AppData/Local/QT/5.12.2/mingw73_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 C:/Users/Acer/AppData/Local/QT/5.12.2/mingw73_32/mkspecs/features/exclusive_builds.prf:
 C:/Users/Acer/AppData/Local/QT/5.12.2/mingw73_32/mkspecs/features/toolchain.prf:
 C:/Users/Acer/AppData/Local/QT/5.12.2/mingw73_32/mkspecs/features/default_pre.prf:

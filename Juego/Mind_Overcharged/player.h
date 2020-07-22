@@ -10,10 +10,10 @@ class Player
 {
 public:
     Player();
-    void MovePlayer(float Accel_X, float Accel_Y, float Friction, float FluidResistance, float Gravity);
+    void MovePlayer(float Accel_X, float Accel_Y, float Friction/*Platform *Obj*/, float FluidResistance, float Gravity);
     void ChargeObj(/*Platform Obj*/);
     void ObjInteraction(/*Class Obj*/);
-    void ThrowInteraction(Player player, float Accel_X, float Accel_Y);
+    void ThrowInteraction(Player *, float Accel_X, float Accel_Y);
 
     float Get_X();
     float Get_Y();

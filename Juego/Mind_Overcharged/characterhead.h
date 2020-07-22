@@ -14,13 +14,13 @@ public:
     void MoveHead(float X, float Y, float Accel_X = 0, float Accel_Y = 0 /*Obj Floor, Class Fluid*/);
     void EnergiceObj(/*Class Obj*/);
 
-    float get_X(), get_Y();
-    void set_X(float X_Value), set_Y(float Y_Value);
+    //float get_X(), get_Y();
+    //void set_X(float X_Value), set_Y(float Y_Value);
 
 private:
     float Charge;
 
-    float X, Y, Accel_X, Accel_Y;
+    float /*X, Y,*/ Accel_X, Accel_Y;
 
 };
 

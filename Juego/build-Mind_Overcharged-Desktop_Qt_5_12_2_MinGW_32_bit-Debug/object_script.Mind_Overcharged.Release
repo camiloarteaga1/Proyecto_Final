@@ -10,9 +10,16 @@ release/hielo.o
 release/laser.o
 release/main.o
 release/mainwindow.o
+release/platform.o
 release/player.o
 release/portal.o
 release/user.o
 release/qrc_Recursos.o
+release/moc_characterhead.o
+release/moc_enemies.o
+release/moc_esfera.o
+release/moc_estrella.o
 release/moc_mainwindow.o
+release/moc_platform.o
+release/moc_portal.o
 release/moc_user.o
