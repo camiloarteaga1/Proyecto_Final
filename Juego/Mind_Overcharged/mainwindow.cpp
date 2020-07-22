@@ -50,7 +50,7 @@ void MainWindow::keyPressEvent(QKeyEvent *Event){
 
     //Player 1 keys
     if(PlayerKeys[0][0] == Event->key()){ // Jump Code (Redirect Function / Maze move upwards)
-        if()
+        if(true);
         Players[0].MovePlayer(0, 10, 0, 0.1f, 9.8f);
     }
     else if(PlayerKeys[0][1] == Event->key()){ // Move left Code
@@ -117,34 +117,6 @@ void MainWindow::keyPressEvent(QKeyEvent *Event){
         ///NewUp = 0;
     }
 
-    switch(Event->key()){
-
-    case Qt::Key_A: /*Move left Code*/ break;
-    case Qt::Key_S: /*Crunch and fall from platform Code (Maze move downwards)*/ break;
-    case Qt::Key_D: /*Move right Code*/ break;
-    case Qt::Key_Q: /*Throw head Code*/ break;
-    case Qt::Key_R: /*Pick up items / interact objects Code*/ break;
-    case Qt::Key_F: /*Sprint Code*/ break;
-
-    case Qt::Key_Up: /*Jump Code (Redirect Function / Maze move upwards)*/ break;
-    case Qt::Key_Left: /*Move left Code*/ break;
-    case Qt::Key_Down: /*Crunch and fall from platform Code (Maze move downwards)*/ break;
-    case Qt::Key_Right: /*Move right Code*/ break;
-    case Qt::Key_O: /*Throw head Code*/ break;
-    case Qt::Key_P: /*Pick up items / interact objects Code*/ break;
-    case Qt::Key_Control: /*Sprint Code*/ break;
-    case 0: break;
-    case 1: break;
-    case 2: break;
-    case 3: break;
-    case 4: break;
-    case 5: break;
-    case 6: break;
-    case 7: break;
-    default: break;
-
-    }
-
 }
 
 MainWindow::~MainWindow()
@@ -154,5 +126,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_BRegister_clicked()
 {
+    usuario = new User(this);
+    usuario->option = 1;
+    usuario->show();
+}
 
+void MainWindow::on_BInicio_clicked()
+{
+    usuario = new User(this);
+    usuario->option = 2;
+    usuario->show();
 }
