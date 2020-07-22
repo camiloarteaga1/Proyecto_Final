@@ -28,6 +28,7 @@ private:
     Ui::User *ui;
     void escribir(string dir, string txt);
     string dirUser = "../Usuarios/dirUsers";
+    bool valuser(string nameusu, string claveusu);
 };
 
 #endif // USER_H
