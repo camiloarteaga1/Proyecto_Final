@@ -50,7 +50,7 @@ void MainWindow::keyPressEvent(QKeyEvent *Event){
 
     //Player 1 keys
     if(PlayerKeys[0][0] == Event->key()){ // Jump Code (Redirect Function / Maze move upwards)
-        if(true);
+        if(true)
         Players[0].MovePlayer(0, 10, 0, 0.1f, 9.8f);
     }
     else if(PlayerKeys[0][1] == Event->key()){ // Move left Code

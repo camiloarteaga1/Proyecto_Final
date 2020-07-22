@@ -14,5 +14,4 @@ void Player::MovePlayer(float AX, float AY, float Fr/*Platform Obj*/, float FR, 
 
     Accel_X += Accel_X - (Accel_X * FR);
     Accel_Y += Accel_Y - (Accel_Y * FR);
-
 }
