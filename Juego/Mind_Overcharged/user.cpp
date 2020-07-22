@@ -14,7 +14,7 @@ User::~User()
     delete ui;
 }
 
-void User::on_pushButton_clicked() //Receives user data
+bool User::on_pushButton_clicked() //Receives user data
 {
     QString name, contra;
     string data;
@@ -27,21 +27,25 @@ void User::on_pushButton_clicked() //Receives user data
     data += contra.toLocal8Bit().constData(); //String with all the user data
 
     if (option == 1){
-        escribir(dirUser, data);
+        escribir(dirUser, data); //Writes the user data in the file
+        comprob = true;
+        return comprob;
     }
     if (option == 2){
-        comprob = valuser(name.toLocal8Bit().constData(), contra.toLocal8Bit().constData());
+        comprob = valuser(name.toLocal8Bit().constData(), contra.toLocal8Bit().constData());//Verifies if the user is in the file
+        return comprob;
     }
+    return comprob;
 }
 
-//Valida que el usuario ya esté registrado
+//Validates that the user is already registered
 bool User::valuser(string nameusu, string claveusu)
 {
     int cont = 0;
     string ps = "", lvl = "", name = "";
     bool aux = false;
 
-    ifstream input(dirUser); //Abre el archivo de usuarios y lo lee linea a linea
+    ifstream input(dirUser); //Opens the file and reads it line by line
 
     for (string line; getline (input, line); )
     {
@@ -50,10 +54,10 @@ bool User::valuser(string nameusu, string claveusu)
         lvl = "";
         name = "";
 
-        string ayuda = line; //Info decodificada
+        string ayuda = line; //Info
 
-        for (unsigned int i = 0; i < ayuda.find(";"); ++i){ //Hasta que encuentre la primera ","
-            name += ayuda.at(i); //String con el ID del usuario
+        for (unsigned int i = 0; i < ayuda.find(";"); ++i){ //Until the ";"
+            name += ayuda.at(i); //String with the username
         }
 
         for (unsigned int i = 0; i < name.length(); ++i){
@@ -80,7 +84,7 @@ bool User::valuser(string nameusu, string claveusu)
             lvl += ayuda.at(i); //Checkpoint
         }
 
-        if (aux == true){ //True si la clave esta en el archivo
+        if (aux == true){ //True if the password is in the file
             cont = 1;
             return aux;
         }
@@ -89,10 +93,10 @@ bool User::valuser(string nameusu, string claveusu)
             aux = false;
         }
     }
-    input.close(); //Cierra el archivo
+    input.close(); //Closes the file
 
     if (cont == 0){
-        cout << "\nEl usuario no esta la base, intenta nuevamente.\n" << endl;
+        qDebug() << "\nEl usuario no esta la base, intenta nuevamente.";
         return aux;
     }
     return aux;
@@ -104,7 +108,7 @@ void User::escribir(string dir, string txt)
     ofstream archivo;
     archivo.open(dir, ios::app);
     if (archivo.fail()){
-        cout << "No se pudo abrir el archivo";
+        qDebug()<< "No se pudo abrir el archivo";
         exit(1);
     }
 

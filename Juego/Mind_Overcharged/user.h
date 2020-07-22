@@ -6,6 +6,7 @@
 #include <string.h>
 #include <iostream>
 #include <fstream>
+#include <QDebug>
 using namespace std;
 
 namespace Ui {
@@ -22,7 +23,7 @@ public:
     int option;
 
 private slots:
-    void on_pushButton_clicked();
+    bool on_pushButton_clicked();
 
 private:
     Ui::User *ui;

@@ -24,13 +24,13 @@ MainWindow::MainWindow(QWidget *parent)
            Qt::Key_R/*Pick up/Interact key*/,
            Qt::Key_F/*Sprint key*/};
 
-    P2K = {Qt::Key_Up/*Jump/Go up key*/,
-           Qt::Key_Left/*Left key*/,
-           Qt::Key_Down/*Crunch/Drop/Go down key*/,
-           Qt::Key_Right/*Right key*/,
+    P2K = {Qt::Key_I/*Jump/Go up key*/,
+           Qt::Key_J/*Left key*/,
+           Qt::Key_K/*Crunch/Drop/Go down key*/,
+           Qt::Key_L/*Right key*/,
            Qt::Key_O/*Throw key*/,
            Qt::Key_P/*Pick up/Interact key*/,
-           Qt::Key_Control/*Sprint key*/};
+           Qt::Key_Shift/*Sprint key*/};
 
     PlayerKeys.push_back(P1K);
     PlayerKeys.push_back(P2K);
@@ -68,13 +68,13 @@ void MainWindow::keyPressEvent(QKeyEvent *Event){
     case Qt::Key_R: /*Pick up items / interact objects Code*/ break;
     case Qt::Key_F: /*Sprint Code*/ break;
 
-    case Qt::Key_Up: /*Jump Code (Redirect Function / Maze move upwards)*/ break;
-    case Qt::Key_Left: /*Move left Code*/ break;
-    case Qt::Key_Down: /*Crunch and fall from platform Code (Maze move downwards)*/ break;
-    case Qt::Key_Right: /*Move right Code*/ break;
+    case Qt::Key_I: /*Jump Code (Redirect Function / Maze move upwards)*/ break;
+    case Qt::Key_J: /*Move left Code*/ break;
+    case Qt::Key_K: /*Crunch and fall from platform Code (Maze move downwards)*/ break;
+    case Qt::Key_L: /*Move right Code*/ break;
     case Qt::Key_O: /*Throw head Code*/ break;
     case Qt::Key_P: /*Pick up items / interact objects Code*/ break;
-    case Qt::Key_Control: /*Sprint Code*/ break;
+    case Qt::Key_Shift: /*Sprint Code*/ break;
     case 0: break;
     case 1: break;
     case 2: break;
