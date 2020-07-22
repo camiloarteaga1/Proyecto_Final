@@ -6,7 +6,9 @@
 #include <QGraphicsView>
 #include <QWidget>
 #include <QKeyEvent>
-#include <user.h>
+
+#include "user.h"
+#include "player.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,25 +26,22 @@ public:
 
 private slots:
     void on_BRegister_clicked();
-
     void on_BInicio_clicked();
 
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QGraphicsView *view;
+    QList<Player> Players;
+    User *usuario;
+    int lifes, lvl;
 
     bool GameScreen;
     bool Multiplayer;
 
     QList<QList<Qt::Key>> PlayerKeys;
     QList<Qt::Key> P1K, P2K;
-
-    User *usuario;
-
     // QList<Entity> Entities;
-
-    int lifes, lvl;
 
 };
 #endif // MAINWINDOW_H
