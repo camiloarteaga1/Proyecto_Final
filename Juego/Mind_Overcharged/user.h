@@ -7,6 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include <QDebug>
+#include <vector>
 using namespace std;
 
 namespace Ui {
@@ -20,16 +21,17 @@ class User : public QDialog
 public:
     explicit User(QWidget *parent = nullptr);
     ~User();
-    int option;
+    int option, vidas, level;
+//    void overwritedata(QList <int> *data);
 
 private slots:
-    bool on_pushButton_clicked();
+    void on_pushButton_clicked();
 
 private:
     Ui::User *ui;
     void escribir(string dir, string txt);
-    string dirUser = "../Usuarios/dirUsers";
-    bool valuser(string nameusu, string claveusu);
+    string dirUser = "../Users/dirUsers.txt";
+    vector <int> valuser(string nameusu, string claveusu);
 };
 
 #endif // USER_H

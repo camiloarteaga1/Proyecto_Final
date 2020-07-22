@@ -6,6 +6,7 @@
 #include <QGraphicsView>
 #include <QWidget>
 #include <QKeyEvent>
+#include <user.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,9 +20,12 @@ public:
     MainWindow(QWidget *parent = nullptr);
     void keyPressEvent(QKeyEvent *Event);
     ~MainWindow();
+    QList <int> datauser;
 
 private slots:
     void on_BRegister_clicked();
+
+    void on_BInicio_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -34,7 +38,11 @@ private:
     QList<QList<Qt::Key>> PlayerKeys;
     QList<Qt::Key> P1K, P2K;
 
+    User *usuario;
+
     // QList<Entity> Entities;
+
+    int lifes, lvl;
 
 };
 #endif // MAINWINDOW_H

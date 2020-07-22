@@ -96,5 +96,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_BRegister_clicked()
 {
+    usuario = new User(this);
+    usuario->option = 1;
+    usuario->show();
+}
 
+void MainWindow::on_BInicio_clicked()
+{
+    usuario = new User(this);
+    usuario->option = 2;
+    usuario->show();
 }

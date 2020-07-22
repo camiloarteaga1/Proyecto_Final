@@ -14,45 +14,60 @@ User::~User()
     delete ui;
 }
 
-bool User::on_pushButton_clicked() //Receives user data
+/*void User::overwritedata(QList<int> *data)
 {
+
+}*/
+
+void User::on_pushButton_clicked() //Receives user data
+{
+    vector <int> datos;
     QString name, contra;
     string data;
-    bool comprob = false;
+    datos.reserve(3);
 
     name = ui->User_2->text();
     contra = ui->Password->text();
     data = name.toLocal8Bit().constData(); //QString to String
     data += ";";
     data += contra.toLocal8Bit().constData(); //String with all the user data
+    data += ",0:3";
+    ui->pushButton->setEnabled(false);
 
     if (option == 1){
         escribir(dirUser, data); //Writes the user data in the file
-        comprob = true;
-        return comprob;
+        datos.push_back(1);
+        datos.push_back(0);
+        datos.push_back(3);
+        vidas = datos[1];
+        level = datos[2];
     }
     if (option == 2){
-        comprob = valuser(name.toLocal8Bit().constData(), contra.toLocal8Bit().constData());//Verifies if the user is in the file
-        return comprob;
+        datos = valuser(name.toLocal8Bit().constData(), contra.toLocal8Bit().constData()); //Verifies if the user is in the file
+        vidas = datos[1];
+        level = datos[2];
     }
-    return comprob;
+    this->hide();
 }
 
 //Validates that the user is already registered
-bool User::valuser(string nameusu, string claveusu)
+vector <int> User::valuser(string nameusu, string claveusu)
 {
+    vector <int> datan; //QList with some user data
+    datan.reserve(3);
     int cont = 0;
-    string ps = "", lvl = "", name = "";
-    bool aux = false;
+    string ps = "", lvl = "", name = "", health = "";
+    int aux = 0;
 
     ifstream input(dirUser); //Opens the file and reads it line by line
 
     for (string line; getline (input, line); )
     {
-        aux = false;
+        aux = 0;
         ps = "";
         lvl = "";
         name = "";
+        health = "";
 
         string ayuda = line; //Info
 
@@ -64,8 +79,10 @@ bool User::valuser(string nameusu, string claveusu)
             if (name.at(i) != nameusu.at(i)) //Compares the username of the file and the username that the user wrote
                 break;
 
-            else if (i == name.length())
-                aux = true;
+            else if (i+1 == name.length()){
+                aux = 1;
+                datan.push_back(aux);
+            }
         }
 
         for (unsigned int i = ayuda.find(";") + 1; i < ayuda.find(","); ++i){
@@ -76,30 +93,42 @@ bool User::valuser(string nameusu, string claveusu)
             if (ps.at(i) != claveusu.at(i)) //Compares the passwords
                 break;
 
-            else if (i == 3)
-                aux = true;
+            else if (i+1 == ps.length()){
+                aux = 1;
+                datan[0] = aux;
+            }
         }
 
-        for (unsigned int i = ayuda.find(",") + 1; i < ayuda.length(); ++i){
+        for (unsigned int i = ayuda.find(",") + 1; i < ayuda.find(":"); ++i){
             lvl += ayuda.at(i); //Checkpoint
+            datan.push_back(stoi(lvl));
         }
 
-        if (aux == true){ //True if the password is in the file
+        for (unsigned int i = ayuda.find(":") + 1; i < ayuda.length(); ++i){
+            health += ayuda.at(i); //Character lifes
+            datan.push_back(stoi(health));
+        }
+
+
+        if (aux == 1){ //True if the password is in the file
             cont = 1;
-            return aux;
+            return datan;
         }
 
         else{
-            aux = false;
+            aux = 0;
         }
     }
     input.close(); //Closes the file
 
     if (cont == 0){
-        qDebug() << "\nEl usuario no esta la base, intenta nuevamente.";
-        return aux;
+        qDebug() << "\nEl usuario no esta en la base, intenta nuevamente.";
+        return datan;
     }
-    return aux;
+//    datos[0] = aux;
+//    datos[1] = stoi(lvl);
+//    datos[2] = stoi(health);
+    return datan;
 }
 
 //Writes into a file line by line
