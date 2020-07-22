@@ -23,7 +23,11 @@ void User::on_pushButton_clicked() //Receives user data
     data = name.toLocal8Bit().constData(); //QString to String
     data += ";";
     data += contra.toLocal8Bit().constData(); //String with all the user data
-
+    /*
+    *data = ui->User_2->text().toLocal8Bit().constData(); //QString to String
+    *data += ";";
+    *data = ui->Password->text().toLocal8Bit().constData(); //QString to String
+    */
     if (option == 1){
         string dirdatauser = "../Usuarios";
         escribir(dirUser, data);

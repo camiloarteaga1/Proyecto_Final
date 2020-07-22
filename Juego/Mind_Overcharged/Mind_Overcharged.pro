@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     boton.cpp \
     characterbody.cpp \
+    characterhead.cpp \
     checkpoint.cpp \
     data_game.cpp \
     enemies.cpp \
@@ -27,12 +28,14 @@ SOURCES += \
     laser.cpp \
     main.cpp \
     mainwindow.cpp \
+    player.cpp \
     portal.cpp \
     user.cpp
 
 HEADERS += \
     boton.h \
     characterbody.h \
+    characterhead.h \
     checkpoint.h \
     data_game.h \
     enemies.h \
@@ -41,6 +44,7 @@ HEADERS += \
     hielo.h \
     laser.h \
     mainwindow.h \
+    player.h \
     portal.h \
     user.h
 
