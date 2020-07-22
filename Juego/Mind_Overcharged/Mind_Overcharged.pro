@@ -28,6 +28,7 @@ SOURCES += \
     laser.cpp \
     main.cpp \
     mainwindow.cpp \
+    niveles.cpp \
     platform.cpp \
     player.cpp \
     portal.cpp \
@@ -45,6 +46,7 @@ HEADERS += \
     hielo.h \
     laser.h \
     mainwindow.h \
+    niveles.h \
     platform.h \
     player.h \
     portal.h \
