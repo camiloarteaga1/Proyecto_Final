@@ -48,12 +48,70 @@ void MainWindow::keyPressEvent(QKeyEvent *Event){
 
     /// NewUp = NewUp xor CurrentDown? NewUp : 0;
 
-    if(PlayerKeys[0][0] == Event->key()){
+    //Player 1 keys
+    if(PlayerKeys[0][0] == Event->key()){ // Jump Code (Redirect Function / Maze move upwards)
+        if()
+        Players[0].MovePlayer(0, 10, 0, 0.1f, 9.8f);
+    }
+    else if(PlayerKeys[0][1] == Event->key()){ // Move left Code
         ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
         ///CurrentUp = NewUp;
         ///NewUp = 0;
-    }else
-    if(PlayerKeys[0][1] == Event->key()){
+    }
+    else if(PlayerKeys[0][2] == Event->key()){ // Crunch and fall from platform Code (Maze move downwards)
+        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
+        ///CurrentUp = NewUp;
+        ///NewUp = 0;
+    }
+    else if(PlayerKeys[0][3] == Event->key()){ // Move right Code
+        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
+        ///CurrentUp = NewUp;
+        ///NewUp = 0;
+    }
+    else if(PlayerKeys[0][4] == Event->key()){ // Throw head Code
+        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
+        ///CurrentUp = NewUp;
+        ///NewUp = 0;
+    }
+    else if(PlayerKeys[0][5] == Event->key()){ // Pick up items / interact objects Code
+        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
+        ///CurrentUp = NewUp;
+        ///NewUp = 0;
+    }
+    else if(PlayerKeys[0][6] == Event->key()){ // Sprint Code
+        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
+        ///CurrentUp = NewUp;
+        ///NewUp = 0;
+    }
+
+    //Player 2 keys
+    if(PlayerKeys[1][0] == Event->key()){ // Jump Code (Redirect Function / Maze move upwards)
+        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
+        ///CurrentUp = NewUp;
+        ///NewUp = 0;
+    }
+    else if(PlayerKeys[1][1] == Event->key()){ // Move left Code
+
+    }
+    else if(PlayerKeys[1][2] == Event->key()){ // Crunch and fall from platform Code (Maze move downwards)
+        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
+        ///CurrentUp = NewUp;
+        ///NewUp = 0;
+    }
+    else if(PlayerKeys[1][3] == Event->key()){ // Move right Code
+        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
+        ///CurrentUp = NewUp;
+        ///NewUp = 0;
+    }
+    else if(PlayerKeys[1][4] == Event->key()){ // Throw head Code
+        ///Player2->ThrowHead()
+    }
+    else if(PlayerKeys[1][5] == Event->key()){ // Pick up items / interact objects Code
+        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
+        ///CurrentUp = NewUp;
+        ///NewUp = 0;
+    }
+    else if(PlayerKeys[1][6] == Event->key()){ // Sprint Code
         ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
         ///CurrentUp = NewUp;
         ///NewUp = 0;

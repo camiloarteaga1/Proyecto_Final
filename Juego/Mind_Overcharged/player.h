@@ -9,7 +9,7 @@
 class Player
 {
 public:
-    Player();
+    Player(QGraphicsItem * = nullptr);
     void MovePlayer(float Accel_X, float Accel_Y, float Friction/*Platform *Obj*/, float FluidResistance, float Gravity);
     void ChargeObj(/*Platform Obj*/);
     void ObjInteraction(/*Class Obj*/);
