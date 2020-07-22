@@ -1,8 +1,9 @@
 #ifndef HIELO_H
 #define HIELO_H
 
+#include "platform.h"
 
-class Hielo
+class Hielo: public Platform
 {
 public:
     Hielo();
