@@ -14,11 +14,6 @@ User::~User()
     delete ui;
 }
 
-/*void User::overwritedata(QList<int> *data)
-{
-
-}*/
-
 void User::on_pushButton_clicked() //Receives user data
 {
     vector <int> datos;
@@ -131,6 +126,59 @@ vector <int> User::valuser(string nameusu, string claveusu)
     return datan;
 }
 
+//Overwrites the user data
+void User::overload(string life, string level, string user)
+{
+    bool aux = false;
+
+    ifstream invent;
+
+    invent.open(dirUser, ios::in);
+
+    if(!invent.is_open()){ //Verifica si el archivo abrio exitosamente
+        std::cout << "Error al abrir el archivo" << endl;
+        exit(1);
+    }
+
+    for (string line; getline (invent, line); ){
+
+        string password = "", idc = "", linea;
+
+
+        for (unsigned int i = 0; i < line.find(";"); ++i){ //until the ";"
+            idc += line.at(i); //String with username
+        }
+
+        for (unsigned int i = 0; i < idc.length(); ++i){
+            if (idc.at(i) != user.at(i)) //Compares username of the player with the username of the archieve
+                break;
+
+            else if (idc == user)
+                aux = true;
+        }
+
+        if (aux == true){ //True if that's the user's data
+            aux = false;
+
+            for (unsigned int i = line.find(",") + 1; i < line.find(";"); ++i){ //From the ";" until the ","
+                password += line.at(i); //String with the password
+            }
+
+            linea = idc + ';' + password + ',' + life + ":" + level; //The string with the user data
+
+            escribir(dirtemp, linea); //Updates the data
+        }
+
+        else{
+            escribir(dirtemp, line); //Updates the data
+        }
+    }
+    invent.close(); //Close the file
+
+    borrar(dirUser); //Erase the archieve
+    rename(dirtemp, dirUser); //Rename the archieve
+}
+
 //Writes into a file line by line
 void User::escribir(string dir, string txt)
 {
@@ -143,4 +191,24 @@ void User::escribir(string dir, string txt)
 
     archivo << txt << "\n";
     archivo.close();
+}
+
+//Rename a file
+template<typename T>
+void rename(T dirtemp, T dircamb)
+{
+    int newname;
+    newname = rename(dirtemp.c_str(), dircamb.c_str()); //Renombra el archivo temp por el de user
+
+    if (newname != 0)
+        perror("Error al renombrar archivo.");
+}
+
+//Erase a file
+template <typename T>
+void borrar(T dir)
+{
+    if(remove(dir.c_str()) != 0) //Elimina un archivo
+       perror("Error al borrar archivo!.");
+    system("cls");
 }

@@ -2,5 +2,4 @@
 
 Data_Game::Data_Game()
 {
-
 }
