@@ -7,13 +7,11 @@ class Data_Game
 {
 public:
     Data_Game();
-    void SetUp();
+    ~Data_Game();
     void LoadData();
     void SaveData();
 
-public:
-    char UsersDF[20]; //User name, password, game data.
-    // char ;
+private:
 
 };
 

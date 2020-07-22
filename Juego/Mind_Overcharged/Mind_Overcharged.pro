@@ -20,7 +20,6 @@ SOURCES += \
     characterbody.cpp \
     characterhead.cpp \
     checkpoint.cpp \
-    data_game.cpp \
     enemies.cpp \
     esfera.cpp \
     estrella.cpp \
@@ -39,7 +38,6 @@ HEADERS += \
     characterbody.h \
     characterhead.h \
     checkpoint.h \
-    data_game.h \
     enemies.h \
     esfera.h \
     estrella.h \
