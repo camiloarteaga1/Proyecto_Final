@@ -12,5 +12,6 @@
         <file>Images/prison.png</file>
         <file>Images/Space.png</file>
         <file>Images/star.png</file>
+        <file>Images/FlagSprite.png</file>
     </qresource>
 </RCC>

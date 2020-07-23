@@ -11,15 +11,19 @@ class Platform: public QGraphicsPixmapItem
     Q_OBJECT
 public:
     Platform(float Pos_X, float Pos_Y, float Friction, float ConductivityResistance, char Orintation[1]);
-
     float get_Friction();
-    void ConductionEffects(Player *, Platform *);
+    float getTemperature();
 
+
+public slots:
+    void ConductionEffects(Player *, Platform *);
+    void TemperatureChange();
 
 private:
-    float Fr;
+    float Friction;
     float Temp;
     float CondRes;
+    bool isActive;
 
 };
 
