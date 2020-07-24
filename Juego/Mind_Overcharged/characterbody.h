@@ -8,7 +8,7 @@ class CharacterBody: public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    CharacterBody();
+    CharacterBody(QGraphicsItem * = nullptr);
 
     //float Get_X(), Get_Y();
     //void Set_X(), Set_Y();
@@ -18,6 +18,7 @@ public slots:
 
 private:
     float Accel_X, Accel_Y;
+    float Mass;
 
 };
 

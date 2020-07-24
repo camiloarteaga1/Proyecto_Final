@@ -6,17 +6,19 @@
 
 #include "player.h"
 
+/// Max size = 10*10 Px
 class Platform: public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
+    Platform(QGraphicsItem * = nullptr);
     Platform(float Pos_X, float Pos_Y, float Friction, float ConductivityResistance, char Orintation[1]);
-    float get_Friction();
+    float getFriction();
     float getTemperature();
 
 
 public slots:
-    void ConductionEffects(Player *, Platform *);
+    void ConductionEffects();
     void TemperatureChange();
 
 private:
