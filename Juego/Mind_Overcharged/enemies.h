@@ -2,9 +2,15 @@
 #define ENEMIES_H
 
 #include <QGraphicsPixmapItem>
+#include <QGraphicsRectItem>
 #include <QObject>
+#include <QGraphicsScene>
+#include <QDebug>
+#include <QTimer>
+#include <QList>
+//#include <QPointF>
 
-class Enemies: public QGraphicsPixmapItem
+class Enemies: public QGraphicsRectItem, public QObject
 {
     Q_OBJECT
 public:
@@ -12,6 +18,12 @@ public:
 
 public slots:
     void Move();
+
+private:
+    QTimer *timer;
+//    QList <QPointF> points;
+//    QPointF dest;
+//    int point_index;
 
 };
 
