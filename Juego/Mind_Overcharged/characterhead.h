@@ -4,6 +4,8 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 
+#include "platform.h"
+
 #define MAX_CHARGE 770 //Amperios
 
 
@@ -11,20 +13,22 @@ class CharacterHead: public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    CharacterHead(QGraphicsItem * = nullptr);
-    void EnergiceObj(/*Class Obj*/);
+    CharacterHead(short Mass, QGraphicsItem * = nullptr); ///
+    float getCharge();
+    short getMass();
 
-    //float get_X(), get_Y();
-    //void set_X(float X_Value), set_Y(float Y_Value);
+    void EnergiceObj(Platform &); ///
+    void Collitions(); ///
+    void setCharge(int Count);
 
 public slots:
-    void Sprite();
+    void Sprite(); /// Do
 
 private:
     float Charge;
     float Accel_X, Accel_Y;
-    float Mass;
-
+    float Speed_X, Speed_Y;
+    const short Mass;
 
 };
 

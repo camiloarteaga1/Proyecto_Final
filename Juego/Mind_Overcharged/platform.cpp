@@ -2,24 +2,15 @@
 
 
 Platform::Platform(QGraphicsItem *parent)
+    : TempBase(20.0f)
 {
 
 }
 
-Platform::Platform(float X, float Y, float Fr, float CR, char Facing[])
-    : Friction(Fr), Temp(20.0), CondRes(CR), isActive(false)
+Platform::Platform(float X, float Y, float Fr, float CR, float AmbTemp, QGraphicsItem *parent)
+    : Friction(Fr), TempBase(AmbTemp), Temp(TempBase), CondRes(CR), isActive(false)
 {
     setPixmap(QPixmap(":/Images/IronPlatform.png"));
-
-    switch(*Facing){
-
-    case *"up": break;
-    case *"down": break;
-    case *"left": break;
-    case *"right": break;
-    default: std::runtime_error Error("El valor ingresado no es valido.");
-
-    }
 
     setX(qreal(X));
     setY(qreal(Y));
@@ -45,9 +36,20 @@ void Platform::ConductionEffects(){
             }
         }
 
-        else if(typeid(CollidingItems[i]) == typeid(Platform))
+        else if(typeid(CollidingItems[i]) == typeid(Platform)){
             if(Platform(CollidingItems[i]).isActive) this->isActive = true;
-
+            else this->isActive = false;
+        }
     }
+}
+
+void Platform::TemperatureChange(){
+
+    if(isActive && Temp < 1000)
+        Temp += 0.01f;
+
+    else if(!isActive && Temp > TempBase)
+        Temp -= 0.001f;
+
 }
 

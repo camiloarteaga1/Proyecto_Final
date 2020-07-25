@@ -12,10 +12,12 @@ class Platform: public QGraphicsPixmapItem
     Q_OBJECT
 public:
     Platform(QGraphicsItem * = nullptr);
-    Platform(float Pos_X, float Pos_Y, float Friction, float ConductivityResistance, char Orintation[1]);
+    Platform(float Pos_X, float Pos_Y, float Friction, float ConductivityResistance, float AmbientTemperature, QGraphicsItem * = nullptr);
     float getFriction();
     float getTemperature();
+    bool getStatus();
 
+    void setStatus(bool);
 
 public slots:
     void ConductionEffects();
@@ -23,6 +25,7 @@ public slots:
 
 private:
     float Friction;
+    const float TempBase;
     float Temp;
     float CondRes;
     bool isActive;
