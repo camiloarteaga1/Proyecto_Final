@@ -8,16 +8,16 @@ class CharacterBody: public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    CharacterBody();
-
-    //float Get_X(), Get_Y();
-    //void Set_X(), Set_Y();
+    CharacterBody(short Mass, QGraphicsItem * = nullptr); ///
+    short getMass();
 
 public slots:
-    void Sprite();
+    void Sprite(); /// Do
 
 private:
     float Accel_X, Accel_Y;
+    float Speed_X, Speed_Y;
+    const short Mass;
 
 };
 

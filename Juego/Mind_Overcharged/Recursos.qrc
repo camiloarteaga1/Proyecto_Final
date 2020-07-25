@@ -1,5 +1,17 @@
 <RCC>
     <qresource prefix="/new/prefix1">
         <file>Images/Menu.jpg</file>
+        <file>Images/0.png</file>
+        <file>Images/2.png</file>
+        <file>Images/blackmage_m.png</file>
+        <file>Images/CheckPoint.png</file>
+        <file>Images/darkknight.png</file>
+        <file>Images/enemies.png</file>
+        <file>Images/metalplatform.png</file>
+        <file>Images/portals.png</file>
+        <file>Images/prison.png</file>
+        <file>Images/Space.png</file>
+        <file>Images/star.png</file>
+        <file>Images/FlagSprite.png</file>
     </qresource>
 </RCC>

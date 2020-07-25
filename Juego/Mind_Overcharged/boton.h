@@ -2,16 +2,25 @@
 #define BOTON_H
 
 #include <QGraphicsPixmapItem>
+#include <QGraphicsPolygonItem>
+#include <QObject>
 
 class Boton: public QGraphicsPixmapItem
 {
+    Q_OBJECT
 public:
-    Boton(float Pos_X, float Pos_Y, char Type[1], char Orientation[1]);
-    void setStatus(bool Status);
+    Boton(float Pos_X, float Pos_Y, short RotationDegrees, QGraphicsItem * = nullptr); ///
     bool getStatus();
 
+    void Interactions(); ///
+    void setStatus(bool Status);
+
+
 private:
+    QGraphicsPolygonItem *DetectArea;
     bool Status;
+
+    //short Type;
 
 };
 
