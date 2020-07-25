@@ -24,6 +24,8 @@ public:
     ~MainWindow();
     QList <int> datauser;
 
+    QList<QList<Qt::Key>> PlayerKeys;
+
 private slots:
     void on_BRegister_clicked();
     void on_BInicio_clicked();
@@ -39,7 +41,6 @@ private:
     bool GameScreen;
     bool Multiplayer;
 
-    QList<QList<Qt::Key>> PlayerKeys;
     QList<Qt::Key> P1K, P2K;
     // QList<Entity> Entities;
 
