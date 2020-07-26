@@ -14,7 +14,7 @@ class Player
 {
 public:
     Player(QGraphicsItem * = nullptr);
-    void MovePlayer(float Accel_X, float Accel_Y, float Friction/*Platform *Obj*/, float FluidResistance, float Gravity, );
+    void MovePlayer(float Accel_X, float Accel_Y, float Friction/*Platform *Obj*/, float FluidResistance, float Gravity);
     //void ChargeObj(Platform &);
 
     template<typename T>

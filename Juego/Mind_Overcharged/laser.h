@@ -8,6 +8,7 @@ class Laser: public QGraphicsPixmapItem
 public:
     Laser(float Pos_X, float Pos_Y);
     void Set_Status(bool isActive);
+
     bool Get_Status();
 
 private:

@@ -1,6 +1,7 @@
 #include "esfera.h"
 
-Esfera::Esfera()
-{
+Esfera::Esfera(float X, float Y, float ER, float F, char Dir[]){
+
+
 
 }

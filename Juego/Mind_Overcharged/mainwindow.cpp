@@ -6,12 +6,12 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    /*scene = new QGraphicsScene(this);
+    scene = new QGraphicsScene(this);
     view = new QGraphicsView(this);
     scene->setSceneRect(0, 0, 2000, 2000);
     view->setScene(scene);
     view->resize(1000, 1000);
-    this->resize(1000, 1000);*/
+    this->resize(1000, 1000);
 
     GameScreen = true;
     Multiplayer = false;

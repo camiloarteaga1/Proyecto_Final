@@ -13,14 +13,14 @@ float CharacterHead::getCharge(){return Charge;}
 
 short CharacterHead::getMass(){return Mass;}
 
-void CharacterHead::EnergiceObj(Platform &platform){
+/*void CharacterHead::EnergiceObj(Platform &platform){
 
     if(this->getCharge() > 0 && !platform.getStatus()){
 
         platform.setStatus(true);
 
     }
-}
+}*/
 
 void CharacterHead::Collitions(){
 

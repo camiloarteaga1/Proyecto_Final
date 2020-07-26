@@ -17,7 +17,7 @@ public:
     float getCharge();
     short getMass();
 
-    void EnergiceObj(Platform &); ///
+    //void EnergiceObj(Platform &); ///
     void Collitions(); ///
     void setCharge(int Count);
 
