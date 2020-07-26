@@ -21,6 +21,16 @@ float Platform::getFriction(){return Friction;}
 
 float Platform::getTemperature(){return Temp;}
 
+bool Platform::getStatus()
+{
+
+}
+
+void Platform::setStatus(bool)
+{
+
+}
+
 void Platform::ConductionEffects(){
 
     QList<QGraphicsItem *> CollidingItems = this->collidingItems();

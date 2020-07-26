@@ -21,9 +21,10 @@ class User : public QDialog
 public:
     explicit User(QWidget *parent = nullptr);
     ~User();
-    int option, vidas, level;
     void overload(string life, string level, string user);
 //    void overwritedata(QList <int> *data);
+
+    int option, vidas, level;
 
 private slots:
     void on_pushButton_clicked();

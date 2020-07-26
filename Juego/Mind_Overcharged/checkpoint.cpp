@@ -15,6 +15,11 @@ CheckPoint::CheckPoint(float X, float Y, short ID, QGraphicsItem *parent){
 
 void CheckPoint::setStatus(bool S){Active = S;}
 
+short CheckPoint::get_Id()
+{
+
+}
+
 void CheckPoint::Sprite(){
 
     /// Flag animation
