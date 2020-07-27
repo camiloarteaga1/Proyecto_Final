@@ -1,4 +1,4 @@
-#ifndef HIELO_H
+/*#ifndef HIELO_H
 #define HIELO_H
 
 #include "platform.h"
@@ -10,3 +10,4 @@ public:
 };
 
 #endif // HIELO_H
+*/

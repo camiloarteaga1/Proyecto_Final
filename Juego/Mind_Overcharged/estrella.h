@@ -1,4 +1,4 @@
-#ifndef ESTRELLA_H
+/*#ifndef ESTRELLA_H
 #define ESTRELLA_H
 
 #include <QGraphicsPixmapItem>
@@ -19,3 +19,4 @@ public slots:
 };
 
 #endif // ESTRELLA_H
+*/

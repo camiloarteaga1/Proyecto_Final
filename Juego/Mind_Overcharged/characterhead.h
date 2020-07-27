@@ -1,4 +1,4 @@
-#ifndef CHARACTERHEAD_H
+/*#ifndef CHARACTERHEAD_H
 #define CHARACTERHEAD_H
 
 #include <QGraphicsPixmapItem>
@@ -33,3 +33,4 @@ private:
 };
 
 #endif // CHARACTERHEAD_H
+*/

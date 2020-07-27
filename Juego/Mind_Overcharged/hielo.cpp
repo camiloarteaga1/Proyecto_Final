@@ -1,6 +1,7 @@
-#include "hielo.h"
+/*#include "hielo.h"
 
 Hielo::Hielo()
 {
 
 }
+*/

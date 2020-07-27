@@ -1,4 +1,4 @@
-#ifndef BOTON_H
+/*#ifndef BOTON_H
 #define BOTON_H
 
 #include <QGraphicsPixmapItem>
@@ -25,3 +25,4 @@ private:
 };
 
 #endif // BOTON_H
+*/

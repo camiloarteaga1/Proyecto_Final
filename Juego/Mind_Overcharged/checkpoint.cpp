@@ -1,4 +1,4 @@
-#include "checkpoint.h"
+/*#include "checkpoint.h"
 #include "player.h"
 #include "mainwindow.h"
 
@@ -39,5 +39,5 @@ void CheckPoint::SetCheckPoint(){
 
 }
 
-
+*/
 

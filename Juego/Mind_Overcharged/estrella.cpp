@@ -1,4 +1,4 @@
-#include "estrella.h"
+/*#include "estrella.h"
 
 Estrella::Estrella()
 {
@@ -13,3 +13,4 @@ void Estrella::Sprite()
 {
 
 }
+*/

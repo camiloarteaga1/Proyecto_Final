@@ -1,4 +1,4 @@
-#ifndef CHECKPOINT_H
+/*#ifndef CHECKPOINT_H
 #define CHECKPOINT_H
 
 #include <QGraphicsPixmapItem>
@@ -25,3 +25,4 @@ private:
 };
 
 #endif // CHECKPOINT_H
+*/

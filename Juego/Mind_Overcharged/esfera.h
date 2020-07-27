@@ -1,4 +1,4 @@
-#ifndef ESFERA_H
+/*#ifndef ESFERA_H
 #define ESFERA_H
 
 #include <QGraphicsPixmapItem>
@@ -19,3 +19,4 @@ private:
 };
 
 #endif // ESFERA_H
+*/
