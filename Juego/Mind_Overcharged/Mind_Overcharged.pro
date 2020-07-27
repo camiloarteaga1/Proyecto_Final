@@ -27,6 +27,7 @@ SOURCES += \
     laser.cpp \
     main.cpp \
     mainwindow.cpp \
+    menu.cpp \
     niveles.cpp \
     platform.cpp \
     player.cpp \
@@ -44,6 +45,7 @@ HEADERS += \
     hielo.h \
     laser.h \
     mainwindow.h \
+    menu.h \
     niveles.h \
     platform.h \
     player.h \
@@ -52,6 +54,7 @@ HEADERS += \
 
 FORMS += \
     mainwindow.ui \
+    menu.ui \
     user.ui
 
 # Default rules for deployment.

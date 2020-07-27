@@ -6,12 +6,12 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    scene = new QGraphicsScene(this);
-    view = new QGraphicsView(this);
+    /*scene = new QGraphicsScene();
+    view = new QGraphicsView();
     scene->setSceneRect(0, 0, 2000, 2000);
     view->setScene(scene);
     view->resize(1000, 1000);
-    this->resize(1000, 1000);
+    this->resize(1000, 1000);*/
 
     GameScreen = true;
     Multiplayer = false;
@@ -50,8 +50,8 @@ void MainWindow::keyPressEvent(QKeyEvent *Event){
 
     //Player 1 keys
     if(PlayerKeys[0][0] == Event->key()){ // Jump Code (Redirect Function / Maze move upwards)
-        if(true)
-        Players[0].MovePlayer(0, 10, 0, 0.1f, 9.8f);
+        //if(true)
+       // Players[0].MovePlayer(0, 10, 0, 0.1f, 9.8f);
     }
     else if(PlayerKeys[0][1] == Event->key()){ // Move left Code
         ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
@@ -129,6 +129,7 @@ void MainWindow::on_BRegister_clicked()
     usuario = new User(this);
     usuario->option = 1;
     usuario->show();
+    this->hide();
 }
 
 void MainWindow::on_BInicio_clicked()
@@ -136,4 +137,5 @@ void MainWindow::on_BInicio_clicked()
     usuario = new User(this);
     usuario->option = 2;
     usuario->show();
+    this->hide();
 }
