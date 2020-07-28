@@ -13,5 +13,7 @@
         <file>Images/Space.png</file>
         <file>Images/star.png</file>
         <file>Images/FlagSprite.png</file>
+        <file>Images/PlayerBody.png</file>
+        <file>Images/PlayerHead.png</file>
     </qresource>
 </RCC>
