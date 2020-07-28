@@ -8,6 +8,7 @@
 #include <fstream>
 #include <QDebug>
 #include <vector>
+#include "menu.h"
 using namespace std;
 
 namespace Ui {
@@ -39,8 +40,8 @@ private:
     template <typename T>
     void borrar(T dir);
 
-    template<typename T>
-    void rename(T dirtemp, T dircamb);
+    template <typename T>
+    void renome(T dirtemp, T dircamb);
 };
 
 #endif // USER_H

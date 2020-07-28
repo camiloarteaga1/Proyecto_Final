@@ -1,4 +1,4 @@
-#ifndef CHARACTERBODY_H
+/*#ifndef CHARACTERBODY_H
 #define CHARACTERBODY_H
 
 #include <QGraphicsPixmapItem>
@@ -22,3 +22,4 @@ private:
 };
 
 #endif // CHARACTERBODY_H
+*/

@@ -1,4 +1,4 @@
-#ifndef LASER_H
+/*#ifndef LASER_H
 #define LASER_H
 
 #include <QGraphicsPixmapItem>
@@ -17,3 +17,4 @@ private:
 };
 
 #endif // LASER_H
+*/

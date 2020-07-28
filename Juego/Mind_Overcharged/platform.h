@@ -1,4 +1,4 @@
-#ifndef PLATFORM_H
+/*#ifndef PLATFORM_H
 #define PLATFORM_H
 
 #include <QGraphicsPixmapItem>
@@ -33,3 +33,4 @@ private:
 };
 
 #endif // PLATFORM_H
+*/

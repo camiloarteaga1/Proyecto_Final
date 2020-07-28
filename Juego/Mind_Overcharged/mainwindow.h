@@ -8,7 +8,7 @@
 #include <QKeyEvent>
 
 #include "user.h"
-#include "player.h"
+//#include "player.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -34,7 +34,7 @@ private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QGraphicsView *view;
-    QList<Player> Players;
+   // QList<Player> Players;
     User *usuario;
     int lifes, lvl;
 

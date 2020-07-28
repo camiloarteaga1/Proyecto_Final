@@ -1,4 +1,4 @@
-#include "enemies.h"
+/*#include "enemies.h"
 
 Enemies::Enemies()
 {
@@ -23,3 +23,4 @@ void Enemies::Move()
         qDebug() << "Enemy delete";
     }
 }
+*/

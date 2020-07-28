@@ -19,6 +19,7 @@ void User::on_pushButton_clicked() //Receives user data
     vector <int> datos;
     QString name, contra;
     string data;
+    Menu * cosa = new Menu(this); //To show the ui Menu
     datos.reserve(3);
 
     name = ui->User_2->text();
@@ -42,6 +43,7 @@ void User::on_pushButton_clicked() //Receives user data
         vidas = datos[1];
         level = datos[2];
     }
+    cosa->show();
     this->hide();
 }
 
@@ -176,7 +178,7 @@ void User::overload(string life, string level, string user)
     invent.close(); //Close the file
 
     borrar(dirUser); //Erase the archieve
-    rename(dirtemp, dirUser); //Rename the archieve
+    renome(dirtemp, dirUser); //Rename the archieve
 }
 
 //Writes into a file line by line
@@ -194,8 +196,8 @@ void User::escribir(string dir, string txt)
 }
 
 //Rename a file
-template<typename T>
-void rename(T dirtemp, T dircamb)
+template <typename T>
+void User::renome(T dirtemp, T dircamb)
 {
     int newname;
     newname = rename(dirtemp.c_str(), dircamb.c_str()); //Renombra el archivo temp por el de user
@@ -206,7 +208,7 @@ void rename(T dirtemp, T dircamb)
 
 //Erase a file
 template <typename T>
-void borrar(T dir)
+void User::borrar(T dir)
 {
     if(remove(dir.c_str()) != 0) //Elimina un archivo
        perror("Error al borrar archivo!.");

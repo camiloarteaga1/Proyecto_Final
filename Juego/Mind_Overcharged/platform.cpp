@@ -1,4 +1,4 @@
-#include "platform.h"
+/*#include "platform.h"
 
 
 Platform::Platform(QGraphicsItem *parent)
@@ -62,4 +62,4 @@ void Platform::TemperatureChange(){
         Temp -= 0.001f;
 
 }
-
+*/

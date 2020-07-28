@@ -1,4 +1,4 @@
-#include "laser.h"
+/*#include "laser.h"
 
 Laser::Laser(float Pos_X, float Pos_Y)
 {
@@ -15,3 +15,4 @@ bool Laser::Get_Status()
 {
 
 }
+*/

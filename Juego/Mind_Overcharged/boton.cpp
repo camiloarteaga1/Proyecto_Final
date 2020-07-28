@@ -1,4 +1,4 @@
-#include "boton.h"
+/*#include "boton.h"
 #include "platform.h"
 #include "mainwindow.h"
 
@@ -59,4 +59,4 @@ void Boton::Interactions(){
 }
 
 void Boton::setStatus(bool s){Status = s;}
-
+*/

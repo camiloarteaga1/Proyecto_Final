@@ -1,4 +1,4 @@
-#ifndef ENEMIES_H
+/*#ifndef ENEMIES_H
 #define ENEMIES_H
 
 #include <QGraphicsPixmapItem>
@@ -28,3 +28,4 @@ private:
 };
 
 #endif // ENEMIES_H
+*/
