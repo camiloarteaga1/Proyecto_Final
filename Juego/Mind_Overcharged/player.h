@@ -9,9 +9,9 @@
 #define MAX_LIFES 3 /// Player's max lifes
 #define MAX_CHARGE 770 /// Player's max head charge
 #define PI 3.1415 /// Pi constant declaration
-#define G 9.88 /// Gravity
-#define MAX_X_SPEED 1.00 /// Max horizontal player speed
-#define Vt(Mass, Acceleration) pow(((Mass * Acceleration) / 1.17 * 0.06 * 0.4), 0.5) /// Terminal speed formula
+#define G 0.00 //0.0988 /// Gravity
+#define MAX_X_SPEED 3.00 /// Max horizontal player speed
+#define Vt(Mass) pow((2 * Mass * G) / (1.17 * 0.06 * 0.4), 0.5) /// Terminal speed formula
 
 class Player: public QObject, public QGraphicsPixmapItem
 {
@@ -93,13 +93,14 @@ public:
     void SpritesStart(int TimeMls);
     void SpritesStop();
 
-public slots:
+private slots:
     /// Interactions
     void MovePlayer();
     void MoveHead();
     void DischargeHead();
     void PickUpHead();
 
+public slots:
     /// Sprites
     void BodySprite();
     void HeadSprite();

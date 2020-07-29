@@ -1,6 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QDebug>
+
+#define TEMP 0.01f
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -23,7 +27,8 @@ MainWindow::MainWindow(QWidget *parent)
     scene->addItem(PlayerTest);
     scene->addItem(PlayerTest->Head);
 
-    PlayerTest->setAirResistance(0.0017);
+    PlayerTest->setAirResistance(0.0017 /*0.0017 = Levels[i]->getAirResistance()*/);
+    PlayerTest->setGroundFriction(TEMP /* = Platform->getFriction()*/);
 
     P1K = {Qt::Key_W/*Jump/Go up key*/,
            Qt::Key_A/*Left key*/,
@@ -56,24 +61,26 @@ void MainWindow::keyPressEvent(QKeyEvent *Event){
     qDebug() << QString("Ultima tecla presionada: ") << QString(LastKey);
     //Player 1 keys
     if(Qt::Key_W == Event->key()){ // Jump Code (Redirect Function / Maze move upwards)
-        if(/*OnTopOfPlatform*/true){
-            //PlayerTest->setAccel_BY(float(G));
-            PlayerTest->setSpeed_BY(-15);
+        if(/*OnTopOfPlatform*/false){
+            PlayerTest->setSpeed_BY(-4);
         }
     }
 
     else if(Qt::Key_A == Event->key()){ // Move left Code
-        PlayerTest->setAccel_BX(PlayerTest->getAccel_BX() - (2 * 0.2f /*Friccion del suelo*/));
 
-        if(PlayerTest->getAccel_BX() < -2)
-            PlayerTest->setAccel_BX(-2);
+        PlayerTest->setAccel_BX(PlayerTest->getAccel_BX() - (2 * TEMP /*Platform->getFriction()*/));
+        //PlayerTest->setSpeed_BX(-2 * 0.2f/*Platform->getFriction()*/);
+
+        if(PlayerTest->getAccel_BX() < -MAX_X_SPEED && LastKey != Qt::Key_A)
+            PlayerTest->setAccel_BX(-MAX_X_SPEED);
 
     }
     else if(Qt::Key_S == Event->key()){ // Fall from platform Code (Maze move downwards)
 
         if(/*OnPlatform*/true && /*Platform->isSolid()*/true)
-        PlayerTest->setSpeed_BX(PlayerTest->getSpeed_BX() > 0? PlayerTest->getSpeed_BX() - (PlayerTest->getSpeed_BX() * 0.2f)
-                                                             : PlayerTest->getSpeed_BX() + (PlayerTest->getSpeed_BX() * 0.2f));
+        PlayerTest->setSpeed_BX(PlayerTest->getSpeed_BX() > 0? PlayerTest->getSpeed_BX() - (PlayerTest->getSpeed_BX() * TEMP /*Platform->getFriction()*/)
+                                                             : PlayerTest->getSpeed_BX() + (PlayerTest->getSpeed_BX() * TEMP /*Platform->getFriction()*/));
+
         else if(/*!Platform->isSolid()*/true){
 
             /*Platform->doTransparent(PlayerTest);*/
@@ -82,10 +89,11 @@ void MainWindow::keyPressEvent(QKeyEvent *Event){
     }
     else if(Qt::Key_D == Event->key()){ // Move right Code
 
-        PlayerTest->setAccel_BX(PlayerTest->getAccel_BX() + (2 * 0.2f /*Friccion del suelo*/));
+        PlayerTest->setAccel_BX(PlayerTest->getAccel_BX() + (2 * TEMP /*Platform->getFriction()*/));
+        //PlayerTest->setSpeed_BX(2 * 0.2f/*Platform->getFriction()*/);
 
-        if(PlayerTest->getAccel_BX() > 2)
-            PlayerTest->setAccel_BX(2);
+        if(PlayerTest->getAccel_BX() > MAX_X_SPEED && LastKey != Qt::Key_D)
+            PlayerTest->setAccel_BX(MAX_X_SPEED);
 
     }
     else if(Qt::Key_Q == Event->key()){ // Throw head Code
@@ -94,8 +102,8 @@ void MainWindow::keyPressEvent(QKeyEvent *Event){
     else if(Qt::Key_G == Event->key()){ // Pick up items / interact objects Code
 
     }
-    else if(Qt::Key_F == Event->key() && (LastKey == Qt::Key_A || LastKey == Qt::Key_D)){ // Sprint Code
-        PlayerTest->setAccel_BX(PlayerTest->getAccel_BX() * 5);
+    else if(Qt::Key_F == Event->key() && LastKey != Qt::Key_F){ // Sprint Code
+        PlayerTest->setAccel_BX(PlayerTest->getAccel_BX() * 2);
     }
 
     LastKey = Qt::Key(Event->key());

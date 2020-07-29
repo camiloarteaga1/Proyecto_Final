@@ -8,8 +8,8 @@ Player::Player(short HeadMass, short BodyMass, short id, QGraphicsItem *parent)
 
     Head = new QGraphicsPixmapItem();
 
-    setPixmap(QPixmap(":/new/prefix1/Images/PlayerBody.png"));
-    Head->setPixmap(QPixmap(":/new/prefix1/Images/PlayerHead.png"));
+    setPixmap(QPixmap(":/Sprites/PlayerBody.png"));
+    Head->setPixmap(QPixmap(":/Sprites/PlayerHead.png"));
 
     setHeadStatus(true);
     Head->setPos(qreal(this->get_BX() - (this->pixmap().width() / 2)),
@@ -35,7 +35,7 @@ Player::Player(short HeadMass, short BodyMass, short id, QGraphicsItem *parent)
     connect(SpritesTimer, SIGNAL(timeout()), this, SLOT(BodySprite()));
     connect(SpritesTimer, SIGNAL(timeout()), this, SLOT(HeadSprite()));
 
-    MoveStart(1000);
+    MoveStart(10);
     //SpritesStart(500);
 
 }
@@ -140,6 +140,7 @@ void Player::MovePlayer(){
 
     TResistance = TResistance > 1? 1 : TResistance;
 
+    BSpeed.setX(BSpeed.x() + BAccel.x());
     BAccel -= QPointF(BAccel.x() * TResistance, BAccel.y() * AirRes); /// Change acceleration
 
 
@@ -154,15 +155,22 @@ void Player::MovePlayer(){
 
     BSpeed += BAccel; /// Change speed
 
+    /// Limit horizontal speed
     if(BSpeed.x() > MAX_X_SPEED)
         BSpeed.setX(MAX_X_SPEED);
 
-    if(BSpeed.y() > Vt((this->BMass + (HeadStatus? this->HMass : 0)), BAccel.y()))
-        BSpeed.setY(Vt((this->BMass + (HeadStatus? this->HMass : 0)), BAccel.y()));
+    else if(BSpeed.x() < -MAX_X_SPEED)
+        BSpeed.setX(-MAX_X_SPEED);
+
+
+    if(BSpeed.y() > Vt(this->BMass + (HeadStatus? this->HMass : 0)))
+        BSpeed.setY(Vt(this->BMass + (HeadStatus? this->HMass : 0)));
 
     this->pos() += BSpeed;
     this->set_BX(this->get_BX() + float(BSpeed.x()));
     this->set_BY(this->get_BY() + float(BSpeed.y()));
+
+    BSpeed.setX(BSpeed.x() - (BSpeed.x() * GroundFr));
 
     if(HeadStatus)
         Head->setPos(qreal(this->get_BX() - (this->pixmap().width() / 2)),
@@ -177,7 +185,7 @@ void Player::MovePlayer(){
     Last_XPos = this->x();
 
     qDebug() << QString("Resistencia del aire: ") << QString::number(AirRes);
-    qDebug() << QString("Velocidad terminal: ") << QString::number(Vt((this->BMass + (HeadStatus? this->HMass : 0)), BAccel.y()));
+    qDebug() << QString("Velocidad terminal: ") << QString::number(Vt(this->BMass + (HeadStatus? this->HMass : 0)));
     qDebug() << QString("Aceleracion Y: ") << QString::number(BAccel.y());
     qDebug() << QString("Velocidad X: ") << QString::number(qreal(getSpeed_BX())) << QString("Velocidad Y: ") << QString::number(qreal(getSpeed_BY()));
     qDebug() << QString("Posicion X: ") << QString::number(qreal(get_BX())) << QString("Posicion Y: ") << QString::number(qreal(get_BY()));
@@ -202,8 +210,8 @@ void Player::MoveHead(){
     if(HAccel.x() > MAX_X_SPEED)
         HAccel.setX(MAX_X_SPEED);
 
-    if(HAccel.y() > Vt((HMass), HAccel.y()))
-        HAccel.setY(Vt((HMass), HAccel.y()));
+    if(HAccel.y() > Vt((HMass)))
+        HAccel.setY(Vt((HMass)));
 
     else if(HAccel.y() < G)
         HAccel.setY(G);
@@ -213,8 +221,8 @@ void Player::MoveHead(){
     if(HSpeed.x() > qreal(MAX_X_SPEED))
         HSpeed.setX(qreal(MAX_X_SPEED));
 
-    if(HSpeed.y() > Vt((HMass), HAccel.y()))
-        HSpeed.setY(Vt((HMass), HAccel.y()));
+    if(HSpeed.y() > Vt((HMass)))
+        HSpeed.setY(Vt((HMass)));
 
 
     Head->pos() += BSpeed; /// Change position
