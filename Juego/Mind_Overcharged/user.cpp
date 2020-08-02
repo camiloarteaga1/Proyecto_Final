@@ -1,5 +1,6 @@
 #include "user.h"
 #include "ui_user.h"
+#include <QMessageBox>
 
 User::User(QWidget *parent) :
     QDialog(parent),
@@ -21,28 +22,38 @@ void User::on_pushButton_clicked() //Receives user data
     string data;
     Menu * cosa = new Menu(this); //To show the ui Menu
     datos.reserve(3);
-
-    name = ui->User_2->text();
-    contra = ui->Password->text();
-    data = name.toLocal8Bit().constData(); //QString to String
-    data += ";";
-    data += contra.toLocal8Bit().constData(); //String with all the user data
-    data += ",0:3";
+    datos[0] = 0;
     ui->pushButton->setEnabled(false);
 
-    if (option == 1){
-        escribir(dirUser, data); //Writes the user data in the file
-        datos.push_back(1);
-        datos.push_back(0);
-        datos.push_back(3);
-        vidas = datos[1];
-        level = datos[2];
+    while (datos[0] == 0){ //While the user is not in the database
+
+        name = ui->User_2->text();
+        contra = ui->Password->text();
+        data = name.toLocal8Bit().constData(); //QString to String
+        data += ";";
+        data += contra.toLocal8Bit().constData(); //String with all the user data
+        data += ",0:3";
+
+        if (option == 1){
+            escribir(dirUser, data); //Writes the user data in the file
+            datos.push_back(1);
+            datos.push_back(0);
+            datos.push_back(3);
+            vidas = datos[1];
+            level = datos[2];
+        }
+        if (option == 2){
+            datos = valuser(name.toLocal8Bit().constData(), contra.toLocal8Bit().constData()); //Verifies if the user is in the file
+            qDebug() << datos[0];
+            vidas = datos[1];
+            level = datos[2];
+        }
+        if (datos[0] == 0){
+            ui->pushButton->setEnabled(true);
+            return;
+        }
     }
-    if (option == 2){
-        datos = valuser(name.toLocal8Bit().constData(), contra.toLocal8Bit().constData()); //Verifies if the user is in the file
-        vidas = datos[1];
-        level = datos[2];
-    }
+
     cosa->show();
     this->hide();
 }
@@ -119,7 +130,7 @@ vector <int> User::valuser(string nameusu, string claveusu)
     input.close(); //Closes the file
 
     if (cont == 0){
-        qDebug() << "\nEl usuario no esta en la base, intenta nuevamente.";
+        QMessageBox::warning(this, "Warning", "El usuario no se encuentra registrado, intente nuevamente");
         return datan;
     }
 //    datos[0] = aux;
@@ -200,7 +211,7 @@ template <typename T>
 void User::renome(T dirtemp, T dircamb)
 {
     int newname;
-    newname = rename(dirtemp.c_str(), dircamb.c_str()); //Renombra el archivo temp por el de user
+    newname = rename(dirtemp.c_str(), dircamb.c_str()); //Renames the temp file with the user's file name
 
     if (newname != 0)
         perror("Error al renombrar archivo.");
@@ -210,7 +221,7 @@ void User::renome(T dirtemp, T dircamb)
 template <typename T>
 void User::borrar(T dir)
 {
-    if(remove(dir.c_str()) != 0) //Elimina un archivo
+    if(remove(dir.c_str()) != 0) //Deletes a file
        perror("Error al borrar archivo!.");
     system("cls");
 }
