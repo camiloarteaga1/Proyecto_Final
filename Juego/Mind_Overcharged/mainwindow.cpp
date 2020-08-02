@@ -1,6 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QDebug>
+
+#define TEMP 0.01f
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -15,6 +19,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     GameScreen = true;
     Multiplayer = false;
+
+    //view = new QGraphicsView;
+    //scene = new QGraphicsScene;
+    //PlayerTest = new Player(5, 55, 0);
+
+    //scene->addItem(PlayerTest);
+    //scene->addItem(PlayerTest->Head);
+
+    //PlayerTest->setAirResistance(0.0017 /*0.0017 = Levels[i]->getAirResistance()*/);
+    //PlayerTest->setGroundFriction(TEMP /* = Platform->getFriction()*/);
 
     P1K = {Qt::Key_W/*Jump/Go up key*/,
            Qt::Key_A/*Left key*/,
@@ -35,88 +49,100 @@ MainWindow::MainWindow(QWidget *parent)
     PlayerKeys.push_back(P1K);
     PlayerKeys.push_back(P2K);
 
+    //view->setScene(scene);
+    //view->show();
+
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *Event){
 
-    if(GameScreen && Event->key()){
+    static Qt::Key LastKey = Qt::Key_0;
 
-        GameScreen = false;
-        return;
-
-    }
-
-    /// NewUp = NewUp xor CurrentDown? NewUp : 0;
-
+    qDebug() << QString("Ultima tecla presionada: ") << QString(LastKey);
     //Player 1 keys
-    if(PlayerKeys[0][0] == Event->key()){ // Jump Code (Redirect Function / Maze move upwards)
-        //if(true)
-       // Players[0].MovePlayer(0, 10, 0, 0.1f, 9.8f);
-    }
-    else if(PlayerKeys[0][1] == Event->key()){ // Move left Code
-        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
-        ///CurrentUp = NewUp;
-        ///NewUp = 0;
-    }
-    else if(PlayerKeys[0][2] == Event->key()){ // Crunch and fall from platform Code (Maze move downwards)
-        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
-        ///CurrentUp = NewUp;
-        ///NewUp = 0;
-    }
-    else if(PlayerKeys[0][3] == Event->key()){ // Move right Code
-        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
-        ///CurrentUp = NewUp;
-        ///NewUp = 0;
-    }
-    else if(PlayerKeys[0][4] == Event->key()){ // Throw head Code
-        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
-        ///CurrentUp = NewUp;
-        ///NewUp = 0;
-    }
-    else if(PlayerKeys[0][5] == Event->key()){ // Pick up items / interact objects Code
-        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
-        ///CurrentUp = NewUp;
-        ///NewUp = 0;
-    }
-    else if(PlayerKeys[0][6] == Event->key()){ // Sprint Code
-        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
-        ///CurrentUp = NewUp;
-        ///NewUp = 0;
+    if(Qt::Key_W == Event->key()){ // Jump Code (Redirect Function / Maze move upwards)
+        if(/*OnTopOfPlatform*/false){
+            PlayerTest->setSpeed_BY(-4);
+        }
     }
 
+    else if(Qt::Key_A == Event->key()){ // Move left Code
+
+        PlayerTest->setAccel_BX(PlayerTest->getAccel_BX() - (2 * TEMP /*Platform->getFriction()*/));
+        //PlayerTest->setSpeed_BX(-2 * 0.2f/*Platform->getFriction()*/);
+
+        if(PlayerTest->getAccel_BX() < -MAX_X_SPEED && LastKey != Qt::Key_A)
+            PlayerTest->setAccel_BX(-MAX_X_SPEED);
+
+    }
+    else if(Qt::Key_S == Event->key()){ // Fall from platform Code (Maze move downwards)
+
+        if(/*OnPlatform*/true && /*Platform->isSolid()*/true)
+        PlayerTest->setSpeed_BX(PlayerTest->getSpeed_BX() > 0? PlayerTest->getSpeed_BX() - (PlayerTest->getSpeed_BX() * TEMP /*Platform->getFriction()*/)
+                                                             : PlayerTest->getSpeed_BX() + (PlayerTest->getSpeed_BX() * TEMP /*Platform->getFriction()*/));
+
+        else if(/*!Platform->isSolid()*/true){
+
+            /*Platform->doTransparent(PlayerTest);*/
+
+        }
+    }
+    else if(Qt::Key_D == Event->key()){ // Move right Code
+
+        PlayerTest->setAccel_BX(PlayerTest->getAccel_BX() + (2 * TEMP /*Platform->getFriction()*/));
+        //PlayerTest->setSpeed_BX(2 * 0.2f/*Platform->getFriction()*/);
+
+        if(PlayerTest->getAccel_BX() > MAX_X_SPEED && LastKey != Qt::Key_D)
+            PlayerTest->setAccel_BX(MAX_X_SPEED);
+
+    }
+    else if(Qt::Key_Q == Event->key()){ // Throw head Code
+        PlayerTest->ThrowObj();
+    }
+    else if(Qt::Key_G == Event->key()){ // Pick up items / interact objects Code
+
+    }
+    else if(Qt::Key_F == Event->key() && LastKey != Qt::Key_F){ // Sprint Code
+        PlayerTest->setAccel_BX(PlayerTest->getAccel_BX() * 2);
+    }
+
+    LastKey = Qt::Key(Event->key());
+    PlayerTest->setKeyPressing(LastKey);
+    return;
+/*
     //Player 2 keys
-    if(PlayerKeys[1][0] == Event->key()){ // Jump Code (Redirect Function / Maze move upwards)
+    if(Qt::Key_Up == Event->key()){ // Jump Code (Redirect Function / Maze move upwards)
         ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
         ///CurrentUp = NewUp;
         ///NewUp = 0;
     }
-    else if(PlayerKeys[1][1] == Event->key()){ // Move left Code
+    else if(Qt::Key_Left == Event->key()){ // Move left Code
 
     }
-    else if(PlayerKeys[1][2] == Event->key()){ // Crunch and fall from platform Code (Maze move downwards)
+    else if(Qt::Key_Down == Event->key()){ // Crunch and fall from platform Code (Maze move downwards)
         ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
         ///CurrentUp = NewUp;
         ///NewUp = 0;
     }
-    else if(PlayerKeys[1][3] == Event->key()){ // Move right Code
+    else if(Qt::Key_Right == Event->key()){ // Move right Code
         ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
         ///CurrentUp = NewUp;
         ///NewUp = 0;
     }
-    else if(PlayerKeys[1][4] == Event->key()){ // Throw head Code
+    else if(Qt::Key_O == Event->key()){ // Throw head Code
         ///Player2->ThrowHead()
     }
-    else if(PlayerKeys[1][5] == Event->key()){ // Pick up items / interact objects Code
+    else if(Qt::Key_P == Event->key()){ // Pick up items / interact objects Code
         ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
         ///CurrentUp = NewUp;
         ///NewUp = 0;
     }
-    else if(PlayerKeys[1][6] == Event->key()){ // Sprint Code
+    else if(Qt::Key_L == Event->key()){ // Sprint Code
         ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
         ///CurrentUp = NewUp;
         ///NewUp = 0;
     }
-
+*/
 }
 
 MainWindow::~MainWindow()
