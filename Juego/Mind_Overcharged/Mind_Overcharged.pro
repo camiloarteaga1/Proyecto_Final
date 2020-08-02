@@ -21,7 +21,6 @@ SOURCES += \
     characterhead.cpp \
     checkpoint.cpp \
     enemies.cpp \
-    esfera.cpp \
     estrella.cpp \
     hielo.cpp \
     laser.cpp \
@@ -40,7 +39,6 @@ HEADERS += \
     characterhead.h \
     checkpoint.h \
     enemies.h \
-    esfera.h \
     estrella.h \
     hielo.h \
     laser.h \
