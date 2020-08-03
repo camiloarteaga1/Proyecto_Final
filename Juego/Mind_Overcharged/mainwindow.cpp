@@ -20,6 +20,10 @@ MainWindow::MainWindow(QWidget *parent)
     GameScreen = true;
     Multiplayer = false;
 
+    Players.push_back(new Player(5, 55, 0));
+
+
+
     //view = new QGraphicsView;
     //scene = new QGraphicsScene;
     //PlayerTest = new Player(5, 55, 0);
@@ -29,8 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //PlayerTest->setAirResistance(0.0017 /*0.0017 = Levels[i]->getAirResistance()*/);
     //PlayerTest->setGroundFriction(TEMP /* = Platform->getFriction()*/);
-
-
+  
     //P1K = {Qt::Key_W/*Jump/Go up key*/,
     //       Qt::Key_A/*Left key*/,
     //       Qt::Key_S/*Crunch/Drop/Go down key*/,

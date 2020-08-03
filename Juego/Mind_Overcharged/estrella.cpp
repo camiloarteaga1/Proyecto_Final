@@ -1,16 +1,7 @@
-/*#include "estrella.h"
+#include "estrella.h"
 
-Estrella::Estrella()
+Estrella::Estrella(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 {
-
+    //draw the star
+    setPixmap(QPixmap(":/new/prefix1/Images/star.png"));
 }
-void Estrella::Picked(Player *)
-{
-
-}
-
-void Estrella::Sprite()
-{
-
-}
-*/

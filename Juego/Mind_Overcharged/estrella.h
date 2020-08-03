@@ -1,22 +1,12 @@
-/*#ifndef ESTRELLA_H
+#ifndef ESTRELLA_H
 #define ESTRELLA_H
-
 #include <QGraphicsPixmapItem>
 #include <QObject>
 
-#include "player.h"
-
-class Estrella: public QGraphicsPixmapItem
+class Estrella:public QObject, public QGraphicsPixmapItem
 {
-    Q_OBJECT
 public:
-    Estrella();
-    void Picked(Player *);
-
-public slots:
-    void Sprite();
-
+    Estrella(QGraphicsItem *parent);
 };
 
 #endif // ESTRELLA_H
-*/

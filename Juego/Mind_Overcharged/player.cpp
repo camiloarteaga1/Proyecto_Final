@@ -1,5 +1,5 @@
 #include "player.h"
-#include "game.h"
+//#include "game.h"
 
 //#include <QDebug>
 #include <QPointF>
@@ -235,6 +235,7 @@ void Player::MovePlayer(){
         BAccel.setX(0);
         BSpeed.setX(0);
     }
+
 
     Game *Wenaz = Game::getMainWinPtr();
     Wenaz->view->centerOn(x(), y());
