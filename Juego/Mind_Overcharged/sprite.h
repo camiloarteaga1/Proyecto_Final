@@ -11,7 +11,7 @@ class Sprite : public QObject, public QGraphicsItem
 {
     Q_OBJECT
 public:
-    explicit Sprite(QObject *parent = nullptr);
+    explicit Sprite(QObject *parent = nullptr, QString image = "");
     QTimer *timer;
     QPixmap *pixmap;
 

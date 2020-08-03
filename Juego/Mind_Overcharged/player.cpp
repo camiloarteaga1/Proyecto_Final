@@ -8,8 +8,8 @@ Player::Player(short HeadMass, short BodyMass, short id, QGraphicsItem *parent)
 
     Head = new QGraphicsPixmapItem();
 
-    setPixmap(QPixmap(":/Sprites/PlayerBody.png"));
-    Head->setPixmap(QPixmap(":/Sprites/PlayerHead.png"));
+    setPixmap(QPixmap(":/new/prefix1/Images/PlayerBody.png"));
+    Head->setPixmap(QPixmap(":/new/prefix1/Images/PlayerHead.png"));
 
     setHeadStatus(true);
     Head->setPos(qreal(this->get_BX() - (this->pixmap().width() / 2)),

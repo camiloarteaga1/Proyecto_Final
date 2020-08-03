@@ -1,6 +1,6 @@
 #include "sprite.h"
 
-Sprite::Sprite(QObject *parent) : QObject(parent)
+Sprite::Sprite(QObject *parent, QString image) : QObject(parent)
 {
     timer = new QTimer();
 
@@ -9,7 +9,7 @@ Sprite::Sprite(QObject *parent) : QObject(parent)
     ancho = 100; //Tamaño
     alto = 100;
 
-    pixmap = new QPixmap("dirimage");
+    pixmap = new QPixmap(image);
 
     connect(timer, &QTimer::timeout, this, &Sprite::Actualizar);
     timer->start(150);
