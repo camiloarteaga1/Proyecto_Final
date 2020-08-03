@@ -237,8 +237,8 @@ void Player::MovePlayer(){
     }
 
 
-    Game *Wenaz = Game::getMainWinPtr();
-    Wenaz->view->centerOn(x(), y());
+    //Game *Wenaz = Game::getMainWinPtr();
+    //Wenaz->view->centerOn(x(), y());
 
     Last_XPos = this->x();
     CurrentKey = Qt::Key_0;

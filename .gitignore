@@ -72,3 +72,5 @@ Juego/build-Mind_Overcharged-Desktop_Qt_5_12_2_MinGW_32_bit-Debug/ui_menu.h
 Juego/build-Mind_Overcharged-Desktop_Qt_5_12_2_MinGW_32_bit-Debug/ui_user.h
 Juego/build-Mind_Overcharged-Desktop_Qt_5_12_3_MinGW_64_bit-Debug/debug/moc_player.cpp
 Juego/build-Mind_Overcharged-Desktop_Qt_5_12_3_MinGW_64_bit-Debug/debug/moc_sprite.cpp
+Juego/build-Mind_Overcharged-Desktop_Qt_5_12_3_MinGW_64_bit-Debug/debug/moc_multiplayer.cpp
+Juego/build-Mind_Overcharged-Desktop_Qt_5_12_3_MinGW_64_bit-Debug/ui_multiplayer.h
