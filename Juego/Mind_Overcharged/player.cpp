@@ -1,17 +1,18 @@
 #include "player.h"
-//#include "game.h"
+#include "multiplayer.h"
 
 //#include <QDebug>
 #include <QPointF>
 
-Player::Player(short HeadMass, short BodyMass, short id, QGraphicsItem *parent)
+Player::Player(short HeadMass, short BodyMass, short id, bool auxi, QString body, QString head, QGraphicsItem *parent)
     : HeadStatus(true), OnPlatform(false), HMass(HeadMass), BMass(BodyMass), ID(id), SepTime(MAX_SEPARATE_TIME), Inmunity(3), AirRes(0), BGroundFr(0), HGroundFr(0)
 {
 
+    aux = auxi;
     Head = new QGraphicsPixmapItem();
 
-    setPixmap(QPixmap(":/Sprites/PlayerBody.png"));
-    Head->setPixmap(QPixmap(":/Sprites/PlayerHead.png"));
+    setPixmap(QPixmap(body));
+    Head->setPixmap(QPixmap(head));
 
     setHeadStatus(true);
     Head->setPos(qreal(this->x() - (this->pixmap().width() / 2)),
@@ -236,9 +237,12 @@ void Player::MovePlayer(){
         BSpeed.setX(0);
     }
 
+    //The view is center on the player
+    if (aux == true){
+        Multiplayer *Wenaz = Multiplayer::getMainWinPtr();
+        Wenaz->view->centerOn(Wenaz->Players[0]);
+    }
 
-    //Game *Wenaz = Game::getMainWinPtr();
-    //Wenaz->view->centerOn(x(), y());
 
     Last_XPos = this->x();
     CurrentKey = Qt::Key_0;

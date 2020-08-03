@@ -15,5 +15,10 @@
         <file>Images/FlagSprite.png</file>
         <file>Images/PlayerBody.png</file>
         <file>Images/PlayerHead.png</file>
+        <file>Images/SolidPlatform.png</file>
+        <file>Images/multiplayerback.png</file>
+        <file>Images/HolePlatform.png</file>
+        <file>Images/LargeSolidPlatform.png</file>
+        <file>Images/Player2Head.png</file>
     </qresource>
 </RCC>

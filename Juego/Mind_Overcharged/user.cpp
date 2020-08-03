@@ -98,8 +98,17 @@ vector <int> User::valuser(string nameusu, string claveusu)
         }
 
         for (unsigned int i = 0; i < ps.length(); ++i){ //Password
-            if (ps.at(i) != claveusu.at(i)) //Compares the passwords
+            if (ps.at(i) != claveusu.at(i)){//Compares the passwords
+                aux = 0;
+                datan[0] = aux;
                 break;
+            }
+
+            else if (ps.length() != claveusu.length()){
+                aux = 0;
+                datan[0] = aux;
+                break;
+            }
 
             else if (i+1 == ps.length()){
                 aux = 1;

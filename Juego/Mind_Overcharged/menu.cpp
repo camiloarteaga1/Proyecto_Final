@@ -26,5 +26,7 @@ void Menu::on_BCargar_clicked()
 
 void Menu::on_BMultiplayer_clicked()
 {
-
+    multi = new Multiplayer(this);
+    multi->exec();
+    this->hide();
 }
