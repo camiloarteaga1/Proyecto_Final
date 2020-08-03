@@ -17,8 +17,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     boton.cpp \
-    characterbody.cpp \
-    characterhead.cpp \
     checkpoint.cpp \
     enemies.cpp \
     estrella.cpp \
@@ -37,8 +35,6 @@ SOURCES += \
 
 HEADERS += \
     boton.h \
-    characterbody.h \
-    characterhead.h \
     checkpoint.h \
     enemies.h \
     estrella.h \
