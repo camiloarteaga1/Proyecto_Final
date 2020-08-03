@@ -145,6 +145,7 @@ private:
     short SepTime;
     short Inmunity;
 
+
     //float SpriteRows, SpriteColumns; /// Sprite dimensions
     //float SpriteWidth, SpriteHeight;
 

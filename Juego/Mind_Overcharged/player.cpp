@@ -236,7 +236,8 @@ void Player::MovePlayer(){
         BSpeed.setX(0);
     }
 
-     Game *Wenaz = Game::getMainWinPtr();
+
+    Game *Wenaz = Game::getMainWinPtr();
     Wenaz->view->centerOn(x(), y());
 
     Last_XPos = this->x();

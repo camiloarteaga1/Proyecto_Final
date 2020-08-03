@@ -34,6 +34,7 @@ private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QGraphicsView *view;
+
     User *usuario;
     int lifes, lvl;
 
@@ -41,6 +42,7 @@ private:
     bool Multiplayer;
 
     QList<Player *> Players;
+    
     //QList<Qt::Key> P1K, P2K;
     // QList<Entity> Entities;
 

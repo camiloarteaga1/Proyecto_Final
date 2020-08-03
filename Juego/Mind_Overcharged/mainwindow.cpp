@@ -33,26 +33,26 @@ MainWindow::MainWindow(QWidget *parent)
 
     //PlayerTest->setAirResistance(0.0017 /*0.0017 = Levels[i]->getAirResistance()*/);
     //PlayerTest->setGroundFriction(TEMP /* = Platform->getFriction()*/);
-/*
-    P1K = {Qt::Key_W Jump/Go up key,
-           Qt::Key_A Left key,
-           Qt::Key_S Crunch/Drop/Go down key ,
-           Qt::Key_D Right key,
-           Qt::Key_Q Throw key,
-           Qt::Key_R Pick up/Interact key,
-           Qt::Key_F Sprint key};
+  
+    //P1K = {Qt::Key_W/*Jump/Go up key*/,
+    //       Qt::Key_A/*Left key*/,
+    //       Qt::Key_S/*Crunch/Drop/Go down key*/,
+    //       Qt::Key_D/*Right key*/,
+    //       Qt::Key_Q/*Throw key*/,
+    //       Qt::Key_R/*Pick up/Interact key*/,
+    //       Qt::Key_F/*Sprint key*/};
 
-    P2K = {Qt::Key_Up Jump/Go up key,
-           Qt::Key_Left Left key,
-           Qt::Key_Down Crunch/Drop/Go down key,
-           Qt::Key_Right Right key,
-           Qt::Key_O Throw key,
-           Qt::Key_P Pick up/Interact key,
-           Qt::Key_Control Sprint key};
+    //P2K = {Qt::Key_Up/*Jump/Go up key*/,
+    //       Qt::Key_Left/*Left key*/,
+    //       Qt::Key_Down/*Crunch/Drop/Go down key*/,
+    //       Qt::Key_Right/*Right key*/,
+    //       Qt::Key_O/*Throw key*/,
+    //       Qt::Key_P/*Pick up/Interact key*/,
+    //       Qt::Key_Control/*Sprint key*/};
 
-    PlayerKeys.push_back(P1K);
-    PlayerKeys.push_back(P2K);
-*/
+    //PlayerKeys.push_back(P1K);
+    //PlayerKeys.push_back(P2K);
+
     //view->setScene(scene);
     //view->show();
 
