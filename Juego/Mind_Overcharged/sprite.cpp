@@ -18,7 +18,7 @@ Sprite::Sprite(QObject *parent, QString image) : QObject(parent)
 void Sprite::Actualizar()
 {
     columnas += 100;
-    if (columnas >=600){
+    if (columnas >= 600){
         columnas = 0;
     }
     this->update(-ancho/2, -alto/2, ancho, alto); //Pos inicial de la pantalla
