@@ -7,7 +7,7 @@
 class Checkpoint:public QObject, public QGraphicsPixmapItem
 {
 public:
-    Checkpoint(QGraphicsItem *parent);
+    Checkpoint(QGraphicsItem *parent = nullptr);
 };
 
 #endif // CHECKPOINT_H

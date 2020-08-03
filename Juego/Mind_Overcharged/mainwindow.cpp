@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     GameScreen = true;
     Multiplayer = false;
 
-    Players.push_back(new Player(5, 55, 0));
+    //Players.push_back(new Player(5, 55, 0, false));
 
 
 

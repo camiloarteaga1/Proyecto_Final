@@ -20,7 +20,7 @@ class Player: public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 /// Functions
 public:
-    Player(short HeadMass, short BodyMass, short ID, QGraphicsItem * = nullptr);
+    Player(short HeadMass, short BodyMass, short ID, bool auxi, QString body, QString head, QGraphicsItem * = nullptr);
 
     void ThrowObj();
     void PlayerDie(); /// Do
@@ -121,6 +121,8 @@ public slots:
 /// Variables
 public:
     QGraphicsPixmapItem *Head;
+
+    bool aux;
 
 private:
 
