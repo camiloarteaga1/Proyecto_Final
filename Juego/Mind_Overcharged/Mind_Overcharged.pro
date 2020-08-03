@@ -20,6 +20,7 @@ SOURCES += \
     checkpoint.cpp \
     enemies.cpp \
     estrella.cpp \
+    final.cpp \
     hielo.cpp \
     laser.cpp \
     main.cpp \
@@ -39,6 +40,7 @@ HEADERS += \
     checkpoint.h \
     enemies.h \
     estrella.h \
+    final.h \
     hielo.h \
     laser.h \
     mainwindow.h \
@@ -53,6 +55,7 @@ HEADERS += \
     vidas.h
 
 FORMS += \
+    final.ui \
     mainwindow.ui \
     menu.ui \
     multiplayer.ui \
