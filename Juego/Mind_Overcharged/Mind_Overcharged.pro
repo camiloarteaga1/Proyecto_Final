@@ -31,7 +31,9 @@ SOURCES += \
     platform.cpp \
     player.cpp \
     portal.cpp \
-    user.cpp
+    sprite.cpp \
+    user.cpp \
+    vidas.cpp
 
 HEADERS += \
     boton.h \
@@ -48,7 +50,9 @@ HEADERS += \
     platform.h \
     player.h \
     portal.h \
-    user.h
+    sprite.h \
+    user.h \
+    vidas.h
 
 FORMS += \
     mainwindow.ui \
