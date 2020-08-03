@@ -34,14 +34,14 @@ private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QGraphicsView *view;
-    Player *PlayerTest;
+    QList<Player *> Players;
     User *usuario;
     int lifes, lvl;
 
     bool GameScreen;
     bool Multiplayer;
 
-    QList<Qt::Key> P1K, P2K;
+    //QList<Qt::Key> P1K, P2K;
     // QList<Entity> Entities;
 
 };
