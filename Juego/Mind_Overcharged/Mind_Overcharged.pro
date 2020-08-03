@@ -25,6 +25,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     menu.cpp \
+    multiplayer.cpp \
     niveles.cpp \
     platform.cpp \
     player.cpp \
@@ -42,6 +43,7 @@ HEADERS += \
     laser.h \
     mainwindow.h \
     menu.h \
+    multiplayer.h \
     niveles.h \
     platform.h \
     player.h \
@@ -53,6 +55,7 @@ HEADERS += \
 FORMS += \
     mainwindow.ui \
     menu.ui \
+    multiplayer.ui \
     user.ui
 
 # Default rules for deployment.
