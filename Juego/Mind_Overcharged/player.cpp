@@ -4,7 +4,7 @@
 //#include <QDebug>
 #include <QPointF>
 
-Player::Player(short HeadMass, short BodyMass, short id, bool auxi, QString body, QString head, QGraphicsItem *parent)
+Player::Player(short HeadMass, short BodyMass, short id, int auxi, QString body, QString head, QGraphicsItem *parent)
     : HeadStatus(true), OnPlatform(false), HMass(HeadMass), BMass(BodyMass), ID(id), SepTime(MAX_SEPARATE_TIME), Inmunity(3), AirRes(0), BGroundFr(0), HGroundFr(0)
 {
 
@@ -238,9 +238,17 @@ void Player::MovePlayer(){
     }
 
     //The view is center on the player
-    if (aux == true){
+    if (aux == 4){
         Multiplayer *Wenaz = Multiplayer::getMainWinPtr();
         Wenaz->view->centerOn(Wenaz->Players[0]);
+    }
+
+    if (aux == 1){
+        if (x()<0 or x()>740){
+            setPos(50, 100);
+        }
+        Nivl1 *Wenaz = Nivl1::getMainWinPtr();
+        Wenaz->view->centerOn(Wenaz->player);
     }
 
 

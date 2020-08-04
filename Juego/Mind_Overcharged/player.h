@@ -6,6 +6,8 @@
 #include <QTimer>
 #include <math.h>
 
+#include "nivl1.h"
+
 #define MAX_LIFES 3 /// Player's max lifes
 #define MAX_CHARGE 770 /// Player's max head charge
 #define MAX_SEPARATE_TIME 10.00 /// Time head can be separated from the body in sec
@@ -20,7 +22,7 @@ class Player: public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 /// Functions
 public:
-    Player(short HeadMass, short BodyMass, short ID, bool auxi, QString body, QString head, QGraphicsItem * = nullptr);
+    Player(short HeadMass, short BodyMass, short ID, int auxi, QString body, QString head, QGraphicsItem * = nullptr);
 
     void ThrowObj();
     void PlayerDie(); /// Do
@@ -122,7 +124,7 @@ public slots:
 public:
     QGraphicsPixmapItem *Head;
 
-    bool aux;
+    int aux;
 
 private:
 

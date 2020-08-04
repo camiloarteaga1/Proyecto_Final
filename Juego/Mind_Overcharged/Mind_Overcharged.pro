@@ -27,10 +27,13 @@ SOURCES += \
     mainwindow.cpp \
     menu.cpp \
     multiplayer.cpp \
-    niveles.cpp \
+    nivel2.cpp \
+    nivel3.cpp \
+    nivl1.cpp \
     platform.cpp \
     player.cpp \
     portal.cpp \
+    prueba.cpp \
     sprite.cpp \
     user.cpp \
     vidas.cpp
@@ -46,10 +49,13 @@ HEADERS += \
     mainwindow.h \
     menu.h \
     multiplayer.h \
-    niveles.h \
+    nivel2.h \
+    nivel3.h \
+    nivl1.h \
     platform.h \
     player.h \
     portal.h \
+    prueba.h \
     sprite.h \
     user.h \
     vidas.h
@@ -59,6 +65,8 @@ FORMS += \
     mainwindow.ui \
     menu.ui \
     multiplayer.ui \
+    nivl1.ui \
+    prueba.ui \
     user.ui
 
 # Default rules for deployment.

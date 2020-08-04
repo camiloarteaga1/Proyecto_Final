@@ -1,16 +1,16 @@
-#include "multiplayer.h"
-#include "ui_multiplayer.h"
+#include "nivl1.h"
+#include "ui_nivl1.h"
 
-#include "checkpoint.h"
+#include <QDebug>
 
-Multiplayer * Multiplayer::pMultiplayer = nullptr;
+Nivl1 * Nivl1::pNivl1 = nullptr;
 
-Multiplayer::Multiplayer(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::Multiplayer)
+Nivl1::Nivl1(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::Nivl1)
 {
     ui->setupUi(this);
-
+    //Creates the scene
     scene = new QGraphicsScene(this);
     view = new QGraphicsView(this);
 
@@ -19,28 +19,25 @@ Multiplayer::Multiplayer(QWidget *parent) :
     obstaculos.reserve(30);
 
     scene->setSceneRect(0, 0, 740, 5000);
-    view->setBackgroundBrush(QBrush/*(Qt::white)*/(QImage(":/new/prefix1/Images/BackgroundMulti.jpg"))); //Gamemode background
+    view->setBackgroundBrush(QBrush(Qt::white)); //Gamemode background
     view->setScene(scene); //Scene initialized
     view->resize(740, 900);
+    ui->label_vidas->setText("x3");
+    ui->label_vidas->setFont(QFont("Forte", 24));
 
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    //Add the players
-    Players.push_back(new Player(5, 55, 0, 4, ":/new/prefix1/Images/PlayerBody.png", ":/new/prefix1/Images/PlayerHead.png"));
-    Players.push_back(new Player(5, 55, 1, 4, ":/new/prefix1/Images/PlayerBody.png", ":/new/prefix1/Images/Player2Head.png"));
+    //Creates the player and adds it to the scene
+    player = new Player(5, 55, 0, 1, ":/new/prefix1/Images/PlayerBody.png", ":/new/prefix1/Images/PlayerHead.png");
+    player->setAirResistance(0.2);
+    scene->addItem(player);
+    scene->addItem(player->Head);
+    player->setPos(50, 100);
 
-    Players[0]->setAirResistance(0.4);
-    Players[1]->setAirResistance(0.4);
-
-    scene->addItem(Players[0]);
-    scene->addItem(Players[1]);
-
-    scene->addItem(Players[0]->Head);
-    scene->addItem(Players[1]->Head);
-
-    Players[0]->setPos(50, 100);
-    Players[1]->setPos(50, 100);
+    //Creates character's lifes
+//    vidas = new Vidas();
+//    scene->addItem(vidas);
 
     //Add obstacles
 
@@ -148,39 +145,40 @@ Multiplayer::Multiplayer(QWidget *parent) :
     scene->addItem(punto);
     punto->setPos(420, 4920);
 
-    pMultiplayer = this;
+    pNivl1 = this;
+
 }
 
-void Multiplayer::keyPressEvent(QKeyEvent *Event){
+void Nivl1::keyPressEvent(QKeyEvent *Event){
 
     static Qt::Key LastKey = Qt::Key_0;
     //qDebug() << QString("Tecla: ") << QString(Event->key());
 
     //Player 1 keys
     if(Qt::Key_W == Event->key()){ // Jump Code (Redirect Function / Maze move upwards)
-        if(Players[0]->getOnPlatform()){
-            Players[0]->setSpeed_BY(-4);
-            Players[0]->setAccel_BY(float(G));
+        if(player->getOnPlatform()){
+            player->setSpeed_BY(-4);
+            player->setAccel_BY(float(G));
         }
     }
 
     else if(Qt::Key_A == Event->key()){ // Move left Code
 
-        Players[0]->setAccel_BX(Players[0]->getAccel_BX() - 2);
+        player->setAccel_BX(player->getAccel_BX() - 2);
 
-        if(Players[0]->getHeadOnPlatform()){
-            Players[0]->setAccel_BX(Players[0]->getAccel_BX() - 2);
-            Players[0]->setSpeed_BX(Players[0]->getSpeed_BX() - 3);
+        if(player->getHeadOnPlatform()){
+            player->setAccel_BX(player->getAccel_BX() - 2);
+            player->setSpeed_BX(player->getSpeed_BX() - 3);
         }
 
     }
     else if(Qt::Key_S == Event->key()){ // Fall from platform Code (Maze move downwards)
 
-        if(Players[0]->getOnPlatform() && /*Platform->isSolid()*/true)
-        Players[0]->setSpeed_BX(Players[0]->getSpeed_BX() > 0? Players[0]->getSpeed_BX() - (Players[0]->getSpeed_BX() * float(Players[0]->getBodyGroundFriction())/*Platform->getFriction()*/)
-                                                             : Players[0]->getSpeed_BX() + (Players[0]->getSpeed_BX() * float(Players[0]->getBodyGroundFriction())/*Platform->getFriction()*/));
+        if(player->getOnPlatform() && /*Platform->isSolid()*/true)
+        player->setSpeed_BX(player->getSpeed_BX() > 0? player->getSpeed_BX() - (player->getSpeed_BX() * float(player->getBodyGroundFriction())/*Platform->getFriction()*/)
+                                                             : player->getSpeed_BX() + (player->getSpeed_BX() * float(player->getBodyGroundFriction())/*Platform->getFriction()*/));
 
-        else if(Players[0]->getOnPlatform() && /*!PlayerTest->PlatformOn()->isSolid()*/true){
+        else if(player->getOnPlatform() && /*!PlayerTest->PlatformOn()->isSolid()*/true){
 
             /*Platform->doTransparent(PlayerTest);*/
 
@@ -188,70 +186,37 @@ void Multiplayer::keyPressEvent(QKeyEvent *Event){
     }
     else if(Qt::Key_D == Event->key()){ // Move right Code
 
-        Players[0]->setAccel_BX(Players[0]->getAccel_BX() + 2);
+        player->setAccel_BX(player->getAccel_BX() + 2);
 
-        if(Players[0]->getHeadOnPlatform()){
-            Players[0]->setAccel_BX(Players[0]->getAccel_BX() + 2);
-            Players[0]->setSpeed_BX(Players[0]->getSpeed_BX() + 3);
+        if(player->getHeadOnPlatform()){
+            player->setAccel_BX(player->getAccel_BX() + 2);
+            player->setSpeed_BX(player->getSpeed_BX() + 3);
         }
 
     }
-    else if(Qt::Key_Q == Event->key() && Players[0]->getHeadStatus()){ // Throw head Code
-        Players[0]->ThrowObj();
+    else if(Qt::Key_Q == Event->key() && player->getHeadStatus()){ // Throw head Code
+        player->ThrowObj();
         //CollitionHead->start(10);
     }
     else if(Qt::Key_G == Event->key()){ // Pick up items / interact objects Code
 
     }
     else if(Qt::Key_F == Event->key() && LastKey != Qt::Key_F){ // Sprint Code
-        Players[0]->setAccel_BX(Players[0]->getAccel_BX() * 2);
+        player->setAccel_BX(player->getAccel_BX() * 2);
     }
 
     LastKey = Qt::Key(Event->key());
-    Players[0]->setKeyPressing(LastKey);
+    player->setKeyPressing(LastKey);
     return;
-/*
-    //Player 2 keys
-    if(Qt::Key_Up == Event->key()){ // Jump Code (Redirect Function / Maze move upwards)
-        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
-        ///CurrentUp = NewUp;
-        ///NewUp = 0;
-    }
-    else if(Qt::Key_Left == Event->key()){ // Move left Code
-
-    }
-    else if(Qt::Key_Down == Event->key()){ // Crunch and fall from platform Code (Maze move downwards)
-        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
-        ///CurrentUp = NewUp;
-        ///NewUp = 0;
-    }
-    else if(Qt::Key_Right == Event->key()){ // Move right Code
-        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
-        ///CurrentUp = NewUp;
-        ///NewUp = 0;
-    }
-    else if(Qt::Key_O == Event->key()){ // Throw head Code
-        ///Player2->ThrowHead()
-    }
-    else if(Qt::Key_P == Event->key()){ // Pick up items / interact objects Code
-        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
-        ///CurrentUp = NewUp;
-        ///NewUp = 0;
-    }
-    else if(Qt::Key_L == Event->key()){ // Sprint Code
-        ///P1->MoveFunction(NewUp, CurrentDown, CurrentLeft, CurrentRight);
-        ///CurrentUp = NewUp;
-        ///NewUp = 0;
-    }
-*/
 }
 
-Multiplayer *Multiplayer::getMainWinPtr()
+Nivl1 *Nivl1::getMainWinPtr()
 {
-    return pMultiplayer;
+    return pNivl1;
 }
 
-Multiplayer::~Multiplayer()
+
+Nivl1::~Nivl1()
 {
     delete ui;
 }

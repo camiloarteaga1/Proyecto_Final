@@ -16,7 +16,9 @@ Menu::~Menu()
 
 void Menu::on_BNuevo_clicked()
 {
-
+    nivel1 = new Nivl1();
+    nivel1->show();
+    this->hide();
 }
 
 void Menu::on_BCargar_clicked()

@@ -3,12 +3,12 @@
 
 Vidas::Vidas(QGraphicsItem *parent): QGraphicsTextItem(parent)
 {
-    //inicializar score en 0
-    vidas = 0;
+    //inicializar vidas en 0
+    vidas = 3;
 
     //draw the text
     setPlainText(QString("")+QString::number(vidas));
-    setDefaultTextColor(Qt::white);
+    setDefaultTextColor(Qt::black);
     setFont(QFont("times",16));
 
     /*//Image for counter

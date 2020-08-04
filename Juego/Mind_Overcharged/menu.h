@@ -4,6 +4,9 @@
 #include <QDialog>
 
 #include "multiplayer.h"
+#include "nivl1.h"
+#include "nivel2.h"
+#include "nivel3.h"
 
 namespace Ui {
 class Menu;
@@ -28,6 +31,7 @@ private:
     Ui::Menu *ui;
 
     Multiplayer *multi;
+    Nivl1 * nivel1;
 };
 
 #endif // MENU_H

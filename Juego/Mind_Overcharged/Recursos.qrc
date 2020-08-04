@@ -20,5 +20,6 @@
         <file>Images/HolePlatform.png</file>
         <file>Images/LargeSolidPlatform.png</file>
         <file>Images/Player2Head.png</file>
+        <file>Images/BackgroundMulti.jpg</file>
     </qresource>
 </RCC>
