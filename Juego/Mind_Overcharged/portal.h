@@ -1,22 +1,14 @@
-/*#ifndef PORTAL_H
+#ifndef PORTAL_H
 #define PORTAL_H
 
 #include <QGraphicsPixmapItem>
 #include <QObject>
 
-//#include "player.h"
-
-class Portal: public QGraphicsPixmapItem // Diseño esferico
+class Portal:public QObject, public QGraphicsPixmapItem
 {
-    Q_OBJECT
 public:
-    Portal(float Entrance_Pos_X, float Entrance_Pos_Y, float Exit_Pos_X, float Exit_Pos_Y);
-
-    template<typename T>
-    void TP(T Entity);
-
-
+    Portal(QString port = "", QGraphicsItem *parent = nullptr);
 };
 
+
 #endif // PORTAL_H
-*/

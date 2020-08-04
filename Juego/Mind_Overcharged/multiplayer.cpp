@@ -10,6 +10,7 @@ Multiplayer::Multiplayer(QWidget *parent) :
     ui(new Ui::Multiplayer)
 {
     ui->setupUi(this);
+    setWindowTitle("Multijugador");
 
     scene = new QGraphicsScene(this);
     view = new QGraphicsView(this);

@@ -18,6 +18,7 @@
 #include "player.h"
 #include "platform.h"
 #include "enemies.h"
+#include "portal.h"
 using namespace std;
 
 namespace Ui {
@@ -35,6 +36,7 @@ public:
     QGraphicsScene * scene;
     QGraphicsView * view;
     class Player * player;
+    QList <Portal *> portal;
 
     QList <Platform *> obstaculos;
     QList <Estrella *> corazones;

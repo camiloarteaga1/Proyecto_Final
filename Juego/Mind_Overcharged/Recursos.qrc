@@ -8,7 +8,6 @@
         <file>Images/darkknight.png</file>
         <file>Images/enemies.png</file>
         <file>Images/metalplatform.png</file>
-        <file>Images/portals.png</file>
         <file>Images/prison.png</file>
         <file>Images/Space.png</file>
         <file>Images/star.png</file>
@@ -21,5 +20,9 @@
         <file>Images/LargeSolidPlatform.png</file>
         <file>Images/Player2Head.png</file>
         <file>Images/BackgroundMulti.jpg</file>
+        <file>Images/Portal1.png</file>
+        <file>Images/Portal2.png</file>
+        <file>Images/PortalR1.png</file>
+        <file>Images/PortalR2.png</file>
     </qresource>
 </RCC>

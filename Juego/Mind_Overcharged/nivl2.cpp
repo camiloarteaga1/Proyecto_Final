@@ -8,7 +8,7 @@ Nivl2::Nivl2(QWidget *parent) :
     ui(new Ui::Nivl2)
 {
     ui->setupUi(this);
-
+    setWindowTitle("Nivel 2");
     //Creates the scene
     scene = new QGraphicsScene(this);
     view = new QGraphicsView(this);
@@ -17,6 +17,7 @@ Nivl2::Nivl2(QWidget *parent) :
 
     obstaculos.reserve(45);
     corazones.reserve(2);
+    portal.reserve(10);
 
     scene->setSceneRect(0, 0, 10000, 5000);
     view->setBackgroundBrush(QBrush(Qt::white)); //Gamemode background
@@ -40,6 +41,15 @@ Nivl2::Nivl2(QWidget *parent) :
     obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/LargeSolidPlatform.png"));
     scene->addItem(obstaculos[0]);
     obstaculos[0]->setPos(20, 4960);
+
+    //Portals
+    portal.push_back(new Portal(":/new/prefix1/Images/PortalR1.png"));
+    scene->addItem(portal[0]);
+    portal[0]->setPos(25, 4870);
+
+    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png"));
+    scene->addItem(portal[1]);
+    portal[1]->setPos(360, 4870);
 
     pNivl2 = this;
 }

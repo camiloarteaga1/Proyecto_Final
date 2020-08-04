@@ -10,6 +10,8 @@ Nivl1::Nivl1(QWidget *parent) :
     ui(new Ui::Nivl1)
 {
     ui->setupUi(this);
+    setWindowTitle("Nivel 1");
+
     //Creates the scene
     scene = new QGraphicsScene(this);
     view = new QGraphicsView(this);
