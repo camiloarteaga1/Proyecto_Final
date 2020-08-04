@@ -1,5 +1,5 @@
-#ifndef NIVL1_H
-#define NIVL1_H
+#ifndef NIVL2_H
+#define NIVL2_H
 
 #include <QWidget>
 #include <iostream>
@@ -21,16 +21,17 @@
 using namespace std;
 
 namespace Ui {
-class Nivl1;
+class Nivl2;
 }
 
-class Nivl1 : public QWidget
+class Nivl2 : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit Nivl1(QWidget *parent = nullptr);
-    ~Nivl1();
+    explicit Nivl2(QWidget *parent = nullptr);
+    ~Nivl2();
+
     QGraphicsScene * scene;
     QGraphicsView * view;
     class Player * player;
@@ -41,14 +42,12 @@ public:
 
     void keyPressEvent(QKeyEvent *Event);
 
-    static Nivl1 *getMainWinPtr();
+    static Nivl2 *getMainWinPtr();
 
-    static Nivl1 *pNivl1;
-
-    //Vidas *vidas;
+    static Nivl2 *pNivl2;
 
 private:
-    Ui::Nivl1 *ui;
+    Ui::Nivl2 *ui;
 };
 
-#endif // NIVL1_H
+#endif // NIVL2_H

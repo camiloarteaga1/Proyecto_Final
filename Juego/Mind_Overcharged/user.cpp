@@ -44,7 +44,7 @@ void User::on_pushButton_clicked() //Receives user data
         }
         if (option == 2){
             datos = valuser(name.toLocal8Bit().constData(), contra.toLocal8Bit().constData()); //Verifies if the user is in the file
-            qDebug() << datos[0];
+            //qDebug() << datos[0];
             vidas = datos[1];
             level = datos[2];
         }

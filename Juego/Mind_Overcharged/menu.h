@@ -2,11 +2,13 @@
 #define MENU_H
 
 #include <QDialog>
+#include <QMessageBox>
 
+#include "user.h"
 #include "multiplayer.h"
 #include "nivl1.h"
-#include "nivel2.h"
-#include "nivel3.h"
+#include "nivl2.h"
+//#include "nivel3.h"
 
 namespace Ui {
 class Menu;
@@ -32,6 +34,8 @@ private:
 
     Multiplayer *multi;
     Nivl1 * nivel1;
+    Nivl2 * nivel2;
+    class User * user;
 };
 
 #endif // MENU_H

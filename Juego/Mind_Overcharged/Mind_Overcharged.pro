@@ -27,9 +27,8 @@ SOURCES += \
     mainwindow.cpp \
     menu.cpp \
     multiplayer.cpp \
-    nivel2.cpp \
-    nivel3.cpp \
     nivl1.cpp \
+    nivl2.cpp \
     platform.cpp \
     player.cpp \
     portal.cpp \
@@ -49,9 +48,8 @@ HEADERS += \
     mainwindow.h \
     menu.h \
     multiplayer.h \
-    nivel2.h \
-    nivel3.h \
     nivl1.h \
+    nivl2.h \
     platform.h \
     player.h \
     portal.h \
@@ -66,6 +64,7 @@ FORMS += \
     menu.ui \
     multiplayer.ui \
     nivl1.ui \
+    nivl2.ui \
     prueba.ui \
     user.ui
 

@@ -23,7 +23,18 @@ void Menu::on_BNuevo_clicked()
 
 void Menu::on_BCargar_clicked()
 {
-
+    nivel2 = new Nivl2();
+    nivel2->show();
+    this->hide();
+    /*if (user->level == 2){
+        nivel2 = new Nivl2();
+        nivel2->show();
+        this->hide();
+    }
+    else{
+        QMessageBox::warning(this, "Warning", "El usuario no tiene ninguna partida guardad");
+        return;
+    }*/
 }
 
 void Menu::on_BMultiplayer_clicked()

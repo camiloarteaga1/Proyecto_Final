@@ -16,7 +16,8 @@ Nivl1::Nivl1(QWidget *parent) :
 
     Checkpoint * punto = new Checkpoint();
 
-    obstaculos.reserve(30);
+    obstaculos.reserve(45);
+    corazones.reserve(2);
 
     scene->setSceneRect(0, 0, 740, 5000);
     view->setBackgroundBrush(QBrush(Qt::white)); //Gamemode background
@@ -30,17 +31,13 @@ Nivl1::Nivl1(QWidget *parent) :
 
     //Creates the player and adds it to the scene
     player = new Player(5, 55, 0, 1, ":/new/prefix1/Images/PlayerBody.png", ":/new/prefix1/Images/PlayerHead.png");
-    player->setAirResistance(0.2);
+    player->setAirResistance(0.08);
     scene->addItem(player);
     scene->addItem(player->Head);
     player->setPos(50, 100);
 
-    //Creates character's lifes
-//    vidas = new Vidas();
-//    scene->addItem(vidas);
-
     //Add obstacles
-
+    //Floor
     obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/LargeSolidPlatform.png"));
     scene->addItem(obstaculos[0]);
     obstaculos[0]->setPos(20, 4960);
@@ -140,6 +137,80 @@ Nivl1::Nivl1(QWidget *parent) :
     obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/LargeSolidPlatform.png"));
     scene->addItem(obstaculos[24]);
     obstaculos[24]->setPos(440, 4500);
+
+    //Walls
+    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/SolidPlatform.png"));
+    scene->addItem(obstaculos[25]);
+    obstaculos[25]->setPos(360, 1460);
+
+    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/SolidPlatform.png"));
+    scene->addItem(obstaculos[26]);
+    obstaculos[26]->setPos(558, 1460);
+
+    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/SolidPlatform.png"));
+    scene->addItem(obstaculos[27]);
+    obstaculos[27]->setPos(518, 960);
+
+    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/SolidPlatform.png"));
+    scene->addItem(obstaculos[28]);
+    obstaculos[28]->setPos(676, 960);
+
+    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/SolidPlatform.png"));
+    scene->addItem(obstaculos[29]);
+    obstaculos[29]->setPos(20, 1960);
+
+    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/SolidPlatform.png"));
+    scene->addItem(obstaculos[30]);
+    obstaculos[30]->setPos(178, 1960);
+
+    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/SolidPlatform.png"));
+    scene->addItem(obstaculos[31]);
+    obstaculos[31]->setPos(240, 2460);
+
+    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/SolidPlatform.png"));
+    scene->addItem(obstaculos[32]);
+    obstaculos[32]->setPos(520, 2460);
+
+    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/SolidPlatform.png"));
+    scene->addItem(obstaculos[33]);
+    obstaculos[33]->setPos(0, 2960);
+
+    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/SolidPlatform.png"));
+    scene->addItem(obstaculos[34]);
+    obstaculos[34]->setPos(280, 2960);
+
+    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/SolidPlatform.png"));
+    scene->addItem(obstaculos[35]);
+    obstaculos[35]->setPos(465, 3460);
+
+    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/SolidPlatform.png"));
+    scene->addItem(obstaculos[36]);
+    obstaculos[36]->setPos(665, 3460);
+
+    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/SolidPlatform.png"));
+    scene->addItem(obstaculos[37]);
+    obstaculos[37]->setPos(140, 3960);
+
+    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/SolidPlatform.png"));
+    scene->addItem(obstaculos[38]);
+    obstaculos[38]->setPos(378, 3960);
+
+    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/SolidPlatform.png"));
+    scene->addItem(obstaculos[39]);
+    obstaculos[39]->setPos(360, 4460);
+
+    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/SolidPlatform.png"));
+    scene->addItem(obstaculos[40]);
+    obstaculos[40]->setPos(680, 4460);
+
+    //Lifes
+    corazones.push_back(new Estrella());
+    scene->addItem(corazones[0]);
+    corazones[0]->setPos(60, 2460);
+
+    corazones.push_back(new Estrella());
+    scene->addItem(corazones[1]);
+    corazones[1]->setPos(60, 3960);
 
     //Add Checkpoint
     scene->addItem(punto);

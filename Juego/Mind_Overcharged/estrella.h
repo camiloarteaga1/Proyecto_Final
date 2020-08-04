@@ -6,7 +6,7 @@
 class Estrella:public QObject, public QGraphicsPixmapItem
 {
 public:
-    Estrella(QGraphicsItem *parent);
+    Estrella(QGraphicsItem *parent = nullptr);
 };
 
 #endif // ESTRELLA_H
