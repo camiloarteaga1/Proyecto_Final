@@ -9,6 +9,7 @@
 
 #include "player.h"
 #include "platform.h"
+#include "wanderingenemy.h"
 #include <QDebug>
 
 namespace Ui {
@@ -23,12 +24,17 @@ public:
     explicit Multiplayer(QWidget *parent = nullptr);
     ~Multiplayer();
     void keyPressEvent(QKeyEvent *Event);
+    void addFloor();
+    void CollitionDetection();
 
     static Multiplayer *getMainWinPtr();
 
     QGraphicsView * view;
     QList <class Player *> Players;
     QList <Platform *> obstaculos;
+    QList <WanderingEnemy *> W_Enemies;
+
+    QTimer *CollitionsTimer;
 
 private:
     Ui::Multiplayer *ui;

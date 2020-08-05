@@ -15,6 +15,7 @@
 #define PI 3.1415 /// Pi constant declaration
 #define G 0.0988 /// Gravity
 #define MAX_X_SPEED 3.00 /// Max horizontal player speed
+#define MAX_X_HSPEED 15.00 /// Max horizontal head speed
 #define Vt(Mass) pow((2 * Mass * G) / (1.17 * 0.06 * 0.6), 0.5) /// Terminal speed formula
 
 /// How it still alive?
