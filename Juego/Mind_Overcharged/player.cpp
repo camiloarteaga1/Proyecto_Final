@@ -156,8 +156,10 @@ void Player::setLifes(short LifesCount){
 
     P_Lifes = LifesCount > MAX_LIFES? MAX_LIFES : LifesCount;
 
-    if(!P_Lifes)
-        PlayerDie();
+    if(!P_Lifes){
+        setPos(50, 100);
+        P_Lifes = MAX_LIFES;
+    }
 
 }
 void Player::setCharge(short Charge){HeadCharge = Charge;}
