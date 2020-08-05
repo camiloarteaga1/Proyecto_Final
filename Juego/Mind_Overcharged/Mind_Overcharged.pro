@@ -30,6 +30,7 @@ SOURCES += \
     platform.cpp \
     player.cpp \
     portal.cpp \
+    reglas.cpp \
     user.cpp \
     wanderingenemy.cpp
 
@@ -47,6 +48,7 @@ HEADERS += \
     platform.h \
     player.h \
     portal.h \
+    reglas.h \
     user.h \
     wanderingenemy.h
 
@@ -57,6 +59,7 @@ FORMS += \
     multiplayer.ui \
     nivl1.ui \
     nivl2.ui \
+    reglas.ui \
     user.ui
 
 # Default rules for deployment.

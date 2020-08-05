@@ -10,7 +10,7 @@
 #include "multiplayer.h"
 #include "nivl1.h"
 #include "nivl2.h"
-//#include "nivel3.h"
+#include "reglas.h"
 
 namespace Ui {
 class Menu;
@@ -31,6 +31,8 @@ private slots:
 
     void on_BMultiplayer_clicked();
 
+    void on_reglas_clicked();
+
 private:
     Ui::Menu *ui;
 
@@ -39,6 +41,7 @@ private:
     class Nivl1 * nivel1;
     class Nivl2 * nivel2;
     class User * user;
+    class Reglas *reglas;
 
 public:
     std::string UserName;

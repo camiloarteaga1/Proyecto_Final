@@ -52,3 +52,10 @@ void Menu::on_BMultiplayer_clicked()
     multi->exec();
     this->hide();
 }
+
+void Menu::on_reglas_clicked()
+{
+    reglas = new Reglas();
+    reglas->show();
+    this->hide();
+}
