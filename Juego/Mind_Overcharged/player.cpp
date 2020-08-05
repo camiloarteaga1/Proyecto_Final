@@ -367,10 +367,12 @@ void Player::SeparateHead(){
         if (aux == 1){
             setPos(50, 100);
             P_Lifes = MAX_LIFES;
+            Head->setPos(50, 100);
         }
         if (aux == 2){
             setPos(192, 4870);
             P_Lifes = MAX_LIFES;
+            Head->setPos(192, 4870);
         }
     }
 
