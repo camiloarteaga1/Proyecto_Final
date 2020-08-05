@@ -21,6 +21,7 @@
 #include "platform.h"
 #include "enemies.h"
 #include "wanderingenemy.h"
+#include "nivl2.h"
 using namespace std;
 
 namespace Ui {
@@ -56,6 +57,8 @@ public:
     void CollitionDetection();
 
     QTimer * CollitionsTimer;
+
+    Nivl2 *nivl2;
 
 
     //Vidas *vidas;

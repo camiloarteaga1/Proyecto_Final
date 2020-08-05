@@ -32,10 +32,10 @@ void User::on_pushButton_clicked() //Receives user data
         data = name.toLocal8Bit().constData(); //QString to String
         data += ";";
         data += contra.toLocal8Bit().constData(); //String with all the user data
-        data += ",0:3";
+        data += ",1:3";
 
         if (option == 1){
-            escribir(dirUser, data); //Writes the user data in the file
+            Archivos::escribir(dirUser, data); //Writes the user data in the file
             datos.push_back(1);
             datos.push_back(0);
             datos.push_back(3);
@@ -194,49 +194,15 @@ void User::overload(string life, string level, string user)
 
             linea = idc + ';' + password + ',' + life + ":" + level; //The string with the user data
 
-            escribir(dirtemp, linea); //Updates the data
+            Archivos::escribir(dirtemp, linea); //Updates the data
         }
 
         else{
-            escribir(dirtemp, line); //Updates the data
+            Archivos::escribir(dirtemp, line); //Updates the data
         }
     }
     invent.close(); //Close the file
 
-    borrar(dirUser); //Erase the archieve
-    renome(dirtemp, dirUser); //Rename the archieve
-}
-
-//Writes into a file line by line
-void User::escribir(string dir, string txt)
-{
-    ofstream archivo;
-    archivo.open(dir, ios::app);
-    if (archivo.fail()){
-        qDebug()<< "No se pudo abrir el archivo";
-        exit(1);
-    }
-
-    archivo << txt << "\n";
-    archivo.close();
-}
-
-//Rename a file
-template <typename T>
-void User::renome(T dirtemp, T dircamb)
-{
-    int newname;
-    newname = rename(dirtemp.c_str(), dircamb.c_str()); //Renames the temp file with the user's file name
-
-    if (newname != 0)
-        perror("Error al renombrar archivo.");
-}
-
-//Erase a file
-template <typename T>
-void User::borrar(T dir)
-{
-    if(remove(dir.c_str()) != 0) //Deletes a file
-       perror("Error al borrar archivo!.");
-    system("cls");
+    Archivos::borrar(dirUser); //Erase the archieve
+    Archivos::renome(dirtemp, dirUser); //Rename the archieve
 }

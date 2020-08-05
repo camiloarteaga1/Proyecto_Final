@@ -156,9 +156,17 @@ void Player::setLifes(short LifesCount){
 
     P_Lifes = LifesCount > MAX_LIFES? MAX_LIFES : LifesCount;
 
-    if(!P_Lifes){
-        setPos(50, 100);
-        P_Lifes = MAX_LIFES;
+    if (aux == 1){
+        if(!P_Lifes){
+            setPos(50, 100);
+            P_Lifes = MAX_LIFES;
+        }
+    }
+    if (aux == 2){
+        if(!P_Lifes){
+            setPos(192, 4870);
+            P_Lifes = MAX_LIFES;
+        }
     }
 
 }
@@ -355,7 +363,16 @@ void Player::SeparateHead(){
 
     setSeparateTime(getSeparateTime() - 1);
 
-    if(!getSeparateTime()) PlayerDie();
+    if(!getSeparateTime()){/*PlayerDie();*/
+        if (aux == 1){
+            setPos(50, 100);
+            P_Lifes = MAX_LIFES;
+        }
+        if (aux == 2){
+            setPos(192, 4870);
+            P_Lifes = MAX_LIFES;
+        }
+    }
 
 }
 

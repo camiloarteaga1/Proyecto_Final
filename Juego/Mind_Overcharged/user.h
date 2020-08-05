@@ -9,13 +9,14 @@
 #include <QDebug>
 #include <vector>
 #include "menu.h"
+#include "archivos.h"
 using namespace std;
 
 namespace Ui {
 class User;
 }
 
-class User : public QDialog
+class User : public QDialog, public Archivos
 {
     Q_OBJECT
 
@@ -32,16 +33,10 @@ private slots:
 
 private:
     Ui::User *ui;
-    void escribir(string dir, string txt);
+
     string dirUser = "../Users/dirUsers.txt";
     string dirtemp = "../Users/dirTemp.txt";
     vector <int> valuser(string nameusu, string claveusu);
-
-    template <typename T>
-    void borrar(T dir);
-
-    template <typename T>
-    void renome(T dirtemp, T dircamb);
 
 public:
     QString name;

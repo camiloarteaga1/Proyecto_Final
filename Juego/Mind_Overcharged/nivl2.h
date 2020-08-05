@@ -19,6 +19,7 @@
 #include "platform.h"
 #include "wanderingenemy.h"
 #include "portal.h"
+#include "final.h"
 using namespace std;
 
 namespace Ui {
@@ -50,6 +51,12 @@ public:
     static Nivl2 *pNivl2;
 
     string UserName;
+
+    int vidas;
+
+    class User *DataCollector;
+
+    Final *message;
 
 private:
     Ui::Nivl2 *ui;

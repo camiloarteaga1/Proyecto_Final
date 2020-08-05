@@ -420,8 +420,14 @@ void Nivl1::CollitionDetection(){
 
                         //qDebug() << QString::fromStdString(this->UserName);
                         DataCollector->overload(to_string(P->getLifes()), "2", this->UserName); //Modifica el archivo de guardado
-                        vid = P->getLifes(); //Set lifes to next game
-
+                        nivl2 = new Nivl2();
+                        nivl2->UserName = this->UserName;
+                        nivl2->show();
+                        Players[0]->setPos(192, 4870);
+                        Players[0]->setLifes(Players[0]->getLifes());
+                        CollitionsTimer->stop();
+                        this->close();
+                        return;
                     }
                 }
 

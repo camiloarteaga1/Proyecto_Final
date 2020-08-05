@@ -361,7 +361,11 @@ void Multiplayer::CollitionDetection(){
 
                         //qDebug() << QString::fromStdString(this->UserName);
                         //DataCollector->overload(to_string(P->getLifes()), "1", this->UserName);
-
+                        message = new Final();
+                        CollitionsTimer->stop();
+                        message->exec();
+                        this->close();
+                        return;
                     }
                 }
 

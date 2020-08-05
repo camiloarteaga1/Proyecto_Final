@@ -44,29 +44,6 @@
   <widget class="QLabel" name="label_vidas">
    <property name="geometry">
     <rect>
-     <x>500</x>
-     <y>920</y>
-     <width>51</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>24</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);</string>
-   </property>
-   <property name="text">
-    <string>0</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_vidas_2">
-   <property name="geometry">
-    <rect>
      <x>290</x>
      <y>390</y>
      <width>51</width>

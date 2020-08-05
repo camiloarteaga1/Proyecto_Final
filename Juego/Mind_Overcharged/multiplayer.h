@@ -11,6 +11,7 @@
 #include "platform.h"
 #include "wanderingenemy.h"
 #include <QDebug>
+#include "final.h"
 
 namespace Ui {
 class Multiplayer;
@@ -42,6 +43,8 @@ private:
     QGraphicsScene * scene;
 
     static Multiplayer *pMultiplayer;
+
+    Final *message;
 };
 
 #endif // MULTIPLAYER_H
