@@ -28,8 +28,6 @@ Nivl1::Nivl1(QWidget *parent) :
     view->setBackgroundBrush(QBrush(Qt::white)); //Gamemode background
     view->setScene(scene); //Scene initialized
     view->resize(740, 900);
-    ui->label_vidas->setText("x3");
-    ui->label_vidas->setFont(QFont("Forte", 24));
 
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -40,6 +38,9 @@ Nivl1::Nivl1(QWidget *parent) :
     scene->addItem(Players[0]);
     scene->addItem(Players[0]->Head);
     Players[0]->setPos(50, 100);
+
+    ui->label_vidas->setText(QString::number(Players[0]->getLifes())); //Label with player lifes
+    ui->label_vidas->setFont(QFont("Forte", 24));
 
     //Add objects
     //Floor
@@ -298,6 +299,7 @@ void Nivl1::addFloor(){
 
 }
 
+//To center the view
 Nivl1 *Nivl1::getMainWinPtr()
 {
     return pNivl1;
@@ -309,6 +311,7 @@ Nivl1::~Nivl1()
     delete ui;
 }
 
+//Detects the collitions
 void Nivl1::CollitionDetection(){
 
     CollitionsTimer = new QTimer;
@@ -390,8 +393,13 @@ void Nivl1::CollitionDetection(){
                             //  P->setLifes(P->getLifes() - 1);
                             //}
                             //else (!Lz){
+                            //Erase the enemy
+                            scene->removeItem(We);
+                            We->~WanderingEnemy();
                             P->setLifes(P->getLifes() - 1);
                             P->InmunityStart(250);
+                            ui->label_vidas->setText(QString::number(P->getLifes()));
+                            ui->label_vidas->setFont(QFont("Forte", 24));
                             if(!P->getLifes()){
                                 scene->removeItem(P->Head);
                                 scene->removeItem(P);
@@ -405,6 +413,8 @@ void Nivl1::CollitionDetection(){
                         P->setLifes(P->getLifes() + 1);
                         P->InmunityStart(125);
                         Star->~Estrella(); //Erase the star
+                        ui->label_vidas->setText(QString::number(P->getLifes()));
+                        ui->label_vidas->setFont(QFont("Forte", 24));
 
                     }
 
@@ -412,6 +422,7 @@ void Nivl1::CollitionDetection(){
 
                         //qDebug() << QString::fromStdString(this->UserName);
                         DataCollector->overload(to_string(P->getLifes()), "1", this->UserName); //Modifica el archivo de guardado
+                        vid = P->getLifes();
 
                     }
                 }
