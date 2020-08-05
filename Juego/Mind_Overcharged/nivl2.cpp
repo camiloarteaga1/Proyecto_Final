@@ -38,91 +38,91 @@ Nivl2::Nivl2(QWidget *parent) :
 
     //Portals
     //1
-    portal.push_back(new Portal(":/new/prefix1/Images/PortalR1.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/PortalR1.png", 192, 910));
     scene->addItem(portal[0]);
     portal[0]->setPos(25, 4870); //Connects with 6 - 1
 
-    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png", 3192.5, 2410));
     scene->addItem(portal[1]);
     portal[1]->setPos(360, 4870); //Connects with 1 - trap - 7
     //2
-    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png", 2192, 4870));
     scene->addItem(portal[2]);
     portal[2]->setPos(25, 910); //Connects with 6 - 6
 
-    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png", 292, 1710));
     scene->addItem(portal[3]);
     portal[3]->setPos(360, 910); //Connects with 2 - 2
     //3
-    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png", 320, 2910));
     scene->addItem(portal[4]);
     portal[4]->setPos(125, 1710); //Connects with trap - 2
 
-    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png", 702, 3910));
     scene->addItem(portal[5]);
     portal[5]->setPos(460, 1710); //Connects with 3 - 3
     //4 trap
-    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png", 292, 1710));
     scene->addItem(portal[6]);
     portal[6]->setPos(490, 2910); //Connects with 2 - 2
     //5
-    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png", 1192, 910));
     scene->addItem(portal[7]);
     portal[7]->setPos(535, 3910); //Connects with 3 - 5
 
-    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png", 1192, 4410));
     scene->addItem(portal[8]);
     portal[8]->setPos(870, 3910); //Connects with 4 - 4
     //6
-    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png", 702, 3910));
     scene->addItem(portal[9]);
-    portal[9]->setPos(1025, 910); //Connects with 3 - 2
+    portal[9]->setPos(1025, 910); //Connects with 3 - 3
 
-    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png", 2192, 4870));
     scene->addItem(portal[10]);
     portal[10]->setPos(1360, 910); //Connects with 5 - 5
     //7
-    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png", 1192, 2110));
     scene->addItem(portal[11]);
     portal[11]->setPos(1025, 4410); //Connects with 4 - trap
 
-    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png", 2192, 4870));
     scene->addItem(portal[12]);
     portal[12]->setPos(1360, 4410); //Connects with 5 - 5
     //8
-    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png", 1192, 4410));
     scene->addItem(portal[13]);
     portal[13]->setPos(1025, 2110); //Connects with 4 - 4
     //9
-    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png", 1192, 910));
     scene->addItem(portal[14]);
     portal[14]->setPos(2025, 4870); //Connects with 3 - 5
 
-    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png", 2192, 4870));
     scene->addItem(portal[15]);
     portal[15]->setPos(2360, 4870); //Connects with 6 - 6
     //10
-    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png", 2192, 2410));
     scene->addItem(portal[16]);
     portal[16]->setPos(2025, 1410); //Connects with 7 - 7
 
-    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png", 192, 910));
     scene->addItem(portal[17]);
     portal[17]->setPos(2360, 1410); //Connects with 6 - 1
     //11
-    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png", 3250, 4410));
     scene->addItem(portal[18]);
     portal[18]->setPos(2025, 2410); //Connects with 8 - trap - final
 
-    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png", 3192.5, 2410));
     scene->addItem(portal[19]);
     portal[19]->setPos(2360, 2410); //Connects with 1 - trap - 7
     //12
-    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png", 192, 4870));
     scene->addItem(portal[20]);
     portal[20]->setPos(3025, 2410); //Connects with 1 - 1
 
-    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png"));
+    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png", 2192, 2410));
     scene->addItem(portal[21]);
     portal[21]->setPos(3360, 2410); //Connects with 7 - 7
     //13

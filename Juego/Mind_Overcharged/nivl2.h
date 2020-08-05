@@ -48,6 +48,8 @@ public:
 
     static Nivl2 *pNivl2;
 
+    string UserName;
+
 private:
     Ui::Nivl2 *ui;
 
