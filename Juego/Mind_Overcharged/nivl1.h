@@ -38,6 +38,7 @@ public:
     QGraphicsView * view;
     class User *DataCollector;
     string UserName;
+    int vid;
 
     QList <class Player *> Players;
     QList <Platform *> obstaculos;

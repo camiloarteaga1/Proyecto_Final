@@ -6,7 +6,7 @@ WanderingEnemy::WanderingEnemy(short M, short InitDirection, QGraphicsItem *pare
     : QGraphicsPixmapItem(parent), Direction(InitDirection), OnPlatform(false), GroundFr(0), AirFr(0), Mass(M)
 {
 
-    setPixmap(QPixmap(":/Sprites/WanderingEnemy.png"));
+    setPixmap(QPixmap(":/new/prefix1/Images/WanderingEnemy.png"));
 
     MoveTimer = new QTimer;
 
