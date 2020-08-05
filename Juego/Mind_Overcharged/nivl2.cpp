@@ -113,7 +113,7 @@ Nivl2::Nivl2(QWidget *parent) :
     scene->addItem(portal[17]);
     portal[17]->setPos(2360, 1410); //Connects with 6 - 1
     //11
-    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png", 33340, 4410));//
+    portal.push_back(new Portal(":/new/prefix1/Images/PortalR2.png", 3340, 4410));//
     scene->addItem(portal[18]);
     portal[18]->setPos(2025, 2410); //Connects with 8 - trap - final
 
@@ -125,7 +125,7 @@ Nivl2::Nivl2(QWidget *parent) :
     scene->addItem(portal[20]);
     portal[20]->setPos(3025, 2410); //Connects with 1 - 1
 
-    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png", 2192, 2410));//
+    portal.push_back(new Portal(":/new/prefix1/Images/Portal1.png", 2192, 1410));//
     scene->addItem(portal[21]);
     portal[21]->setPos(3360, 2410); //Connects with 7 - 7
     //13

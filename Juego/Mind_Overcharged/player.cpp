@@ -268,7 +268,7 @@ void Player::MovePlayer(){
         Wenaz->view->centerOn(Wenaz->Players[0]);
     }
     else if(aux == 2){
-        if (x()<0 or x()>740 or y()>5000){
+        if (x()<0 or x()>3500 or y()>5000){
             setPos(192, 4870);
         }
         Nivl2 *Wenaz = Nivl2::getMainWinPtr();

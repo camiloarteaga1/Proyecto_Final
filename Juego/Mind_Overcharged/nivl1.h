@@ -14,7 +14,6 @@
 #include <QTimer>
 
 #include "user.h"
-#include "vidas.h"
 #include "checkpoint.h"
 #include "estrella.h"
 #include "player.h"

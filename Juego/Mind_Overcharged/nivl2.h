@@ -12,7 +12,6 @@
 #include <QList>
 #include <QObject>
 
-#include "vidas.h"
 #include "checkpoint.h"
 #include "estrella.h"
 #include "player.h"
