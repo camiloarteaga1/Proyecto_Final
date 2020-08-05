@@ -290,7 +290,7 @@ void Player::MoveHead(){
     HSpeed.setX(HSpeed.x() + HAccel.x());
 
     /// Limit speed
-    HSpeed.setX(HSpeed.x() > MAX_X_SPEED? MAX_X_SPEED : HSpeed.x() < -MAX_X_SPEED? -MAX_X_SPEED : HSpeed.x());
+    HSpeed.setX(HSpeed.x() > MAX_X_HSPEED? MAX_X_HSPEED : HSpeed.x() < -MAX_X_HSPEED? -MAX_X_HSPEED : HSpeed.x());
     HSpeed.setY(HSpeed.y() > Vt(this->HMass)? Vt(this->HMass) : HSpeed.y());
 
     if(HeadOnPlatform && HSpeed.y() > 0){
