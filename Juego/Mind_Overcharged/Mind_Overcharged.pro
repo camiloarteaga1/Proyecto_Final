@@ -17,13 +17,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     archivos.cpp \
-    boton.cpp \
     checkpoint.cpp \
     enemies.cpp \
     estrella.cpp \
     final.cpp \
-    hielo.cpp \
-    laser.cpp \
     main.cpp \
     mainwindow.cpp \
     menu.cpp \
@@ -33,21 +30,15 @@ SOURCES += \
     platform.cpp \
     player.cpp \
     portal.cpp \
-    prueba.cpp \
-    sprite.cpp \
     user.cpp \
-    vidas.cpp \
     wanderingenemy.cpp
 
 HEADERS += \
     archivos.h \
-    boton.h \
     checkpoint.h \
     enemies.h \
     estrella.h \
     final.h \
-    hielo.h \
-    laser.h \
     mainwindow.h \
     menu.h \
     multiplayer.h \
@@ -56,10 +47,7 @@ HEADERS += \
     platform.h \
     player.h \
     portal.h \
-    prueba.h \
-    sprite.h \
     user.h \
-    vidas.h \
     wanderingenemy.h
 
 FORMS += \
@@ -69,7 +57,6 @@ FORMS += \
     multiplayer.ui \
     nivl1.ui \
     nivl2.ui \
-    prueba.ui \
     user.ui
 
 # Default rules for deployment.
