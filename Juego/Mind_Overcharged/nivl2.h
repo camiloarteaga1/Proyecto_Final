@@ -17,7 +17,7 @@
 #include "estrella.h"
 #include "player.h"
 #include "platform.h"
-#include "enemies.h"
+#include "wanderingenemy.h"
 #include "portal.h"
 using namespace std;
 
@@ -32,6 +32,7 @@ class Nivl2 : public QWidget
 public:
     explicit Nivl2(QWidget *parent = nullptr);
     ~Nivl2();
+    void CollitionDetection();
 
     QGraphicsScene * scene;
     QGraphicsView * view;
@@ -40,7 +41,7 @@ public:
 
     QList <Platform *> obstaculos;
     QList <Estrella *> corazones;
-    //QList <Enemies *> enemigos;
+    QList <WanderingEnemy *> W_Enemies;
 
     void keyPressEvent(QKeyEvent *Event);
 
@@ -52,6 +53,7 @@ public:
 
 private:
     Ui::Nivl2 *ui;
+    QTimer *CollitionsTimer;
 
     void addFloor();
 };

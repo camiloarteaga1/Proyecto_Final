@@ -8,6 +8,7 @@
 
 #include "multiplayer.h"
 #include "nivl1.h"
+#include "nivl2.h"
 
 #define MAX_LIFES 3 /// Player's max lifes
 #define MAX_CHARGE 770 /// Player's max head charge

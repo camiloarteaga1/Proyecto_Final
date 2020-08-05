@@ -7,13 +7,13 @@
 class Portal:public QObject, public QGraphicsPixmapItem
 {
 public:
-    Portal(QString port = "", float x = 0, float y = 0, QGraphicsItem *parent = nullptr);
+    Portal(QString port = "", float Tp_x = 0, float Tp_y = 0, QGraphicsItem *parent = nullptr);
 
-    float get_X();
-    float get_Y();
+    float getTp_X();
+    float getTp_Y();
 
 private:
-        float xi = 0, yi = 0;
+        float Tp_x = 0, Tp_y = 0;
 };
 
 

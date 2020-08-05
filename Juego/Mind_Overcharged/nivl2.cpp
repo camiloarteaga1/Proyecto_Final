@@ -26,15 +26,15 @@ Nivl2::Nivl2(QWidget *parent) :
     ui->label_vidas->setText("x3");
     ui->label_vidas->setFont(QFont("Forte", 24));
 
-    //view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    //view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    /*//Creates the player and adds it to the scene
-    Players.push_back(new Player(5, 55, 0, 1, ":/new/prefix1/Images/PlayerBody.png", ":/new/prefix1/Images/GreenHead.png"));
-    Players[0]->setAirResistance(0.08);
+    //Creates the player and adds it to the scene
+    Players.push_back(new Player(40, 20, 0, 2, ":/new/prefix1/Images/PlayerBody.png", ":/new/prefix1/Images/GreenHead.png"));
+    Players[0]->setAirResistance(0.0117);
     scene->addItem(Players[0]);
     scene->addItem(Players[0]->Head);
-    Players[0]->setPos(50, 100);*/
+    Players[0]->setPos(192, 4870);
 
     //Portals
     //1
@@ -130,6 +130,7 @@ Nivl2::Nivl2(QWidget *parent) :
     punto->setPos(3020, 4460);
 
     addFloor();
+    CollitionDetection();
 
     pNivl2 = this;
 }
@@ -259,3 +260,295 @@ Nivl2 *Nivl2::getMainWinPtr()
     return pNivl2;
 }
 
+void Nivl2::CollitionDetection(){
+
+    CollitionsTimer = new QTimer;
+
+    connect(CollitionsTimer, &QTimer::timeout,[=](){
+
+        ///*************** Player collitions
+        foreach(Player *P, Players){
+
+            QList<QGraphicsItem *> P_CollidingItems = P->collidingItems();
+            bool ColPlat = false;
+            static Platform *LastPlatformTouch;
+
+            if(P_CollidingItems.isEmpty()){
+
+                //static int Count = 0;
+                //qDebug() << QString("Player collitions empty") << QString::number(Count++);
+                P->setOnPlatform(false);
+                P->setBodyGroundFriction(0);
+                P->DischargeStop();
+
+                if(LastPlatformTouch && P->getHeadStatus()){
+                    LastPlatformTouch->setMode(0);
+                    LastPlatformTouch->setIsPlayerOnTop(false);
+                }
+            }
+
+            else{
+                foreach(QGraphicsItem *i, P_CollidingItems){
+
+                    Platform *Obj = dynamic_cast<Platform *>(i);
+                    //Player *Pl = dynamic_cast<Player *>(i);
+                    WanderingEnemy *We = dynamic_cast<WanderingEnemy *>(i);
+                    Estrella *Star = dynamic_cast<Estrella *>(i);
+                    Checkpoint *Cp = dynamic_cast<Checkpoint *>(i);
+                    Portal *Tp = dynamic_cast<Portal *>(i);
+                    // Lazer Lz = dynamic_cast<Lazer *>(P1_CollidingItems[i]);
+
+                    if(Obj){
+
+                        ColPlat = true;
+                        LastPlatformTouch = Obj;
+                        if(P->getHeadStatus())
+                            Obj->setMode(1);
+
+                        if(Obj->getIsConductive() && P->getHeadStatus()){
+
+                            Obj->setIsPlayerOnTop(true);
+
+                            if(!P->IsDischarging())
+                                P->DischargeStart();
+                        }
+
+                        if((P->y() < Obj->y()) || (P->y() < (Obj->y() + Obj->pixmap().height()))){
+
+                            P->setOnPlatform(true);
+                            P->setBodyGroundFriction(Obj->getFriction());
+                            //ColPlat = true;
+
+                        }
+                        else if((P->y() > Obj->y()) || (P->y() > (Obj->y() + Obj->pixmap().height()))){
+
+                            //ColPlat = true;
+                            P->setSpeed_BY(-(P->getSpeed_BY() / 2));
+
+                        }
+
+                        if((((P->x() > Obj->x() - Obj->pixmap().width()) xor (P->x() < Obj->x()))) && (Obj->y() < P->y() + P->pixmap().height())){
+
+                            P->setY(Obj->y() - P->pixmap().height());
+                            //ColPlat = true;
+
+                        }
+                    }/// Collides a platform
+
+                    else if(Tp){
+
+                        P->setX(Tp->getTp_X());
+                        P->setY(Tp->getTp_Y());
+
+                    }
+
+                    else if(We){
+                        if(!P->IsInmune()){
+
+                            //if(Lz && Lz.isActive()){
+                            //  P->setLifes(P->getLifes() - 1);
+                            //}
+                            //else (!Lz){
+                            P->setLifes(P->getLifes() - 1);
+                            P->InmunityStart(250);
+                            ui->label_vidas->setText(QString::number(P->getLifes())); //Set scene lifes
+                            ui->label_vidas->setFont(QFont("Forte", 24));
+                            if(!P->getLifes()){
+                                scene->removeItem(P->Head); //Remove head if player is out of lifes
+                                scene->removeItem(P);
+                            }
+                            //}
+                        }
+                    }/// Damage player
+
+                    else if(Star){
+
+                        P->setLifes(P->getLifes() + 1);
+                        P->InmunityStart(125);
+                        Star->~Estrella(); //Erase the star
+                        ui->label_vidas->setText(QString::number(P->getLifes())); //Set scene lifes
+                        ui->label_vidas->setFont(QFont("Forte", 24));
+
+                    }
+
+                    else if(Cp){
+
+                        //qDebug() << QString::fromStdString(this->UserName);
+                        //DataCollector->overload(to_string(P->getLifes()), "2", this->UserName); //Modifica el archivo de guardado
+                        //vid = P->getLifes(); //Set lifes to next game
+
+                    }
+                }
+
+                if(!ColPlat){
+                    //qDebug() << QString("Tambien pasa aqui");
+                    P->setOnPlatform(false);
+                    P->setBodyGroundFriction(0);
+                    P->DischargeStop();
+
+                    if(LastPlatformTouch && P->getHeadStatus()){
+                        LastPlatformTouch->setMode(0);
+                        LastPlatformTouch->setIsPlayerOnTop(false);
+                    }
+                }
+            }
+        }
+        ///******** Player's head collitions
+        foreach(Player *P, Players){
+
+            if(P->getHeadStatus()) break;
+
+            QList<QGraphicsItem *> PH_CollidingItems = P->Head->collidingItems();
+            bool ColPlat = false;
+            static Platform *LastPlatformTouch;
+
+            if(PH_CollidingItems.isEmpty()){
+
+                P->setHeadOnPlatform(false);
+                P->setHeadGroundFriction(0);
+
+                if(LastPlatformTouch){
+                    LastPlatformTouch->setMode(0);
+                    LastPlatformTouch->setIsPlayerOnTop(false);
+                }
+            }
+
+            else{
+                foreach(QGraphicsItem *i, PH_CollidingItems){
+                    Platform *Obj = dynamic_cast<Platform *>(i);
+                    Player *Pl = dynamic_cast<Player *>(i);
+                    WanderingEnemy *We = dynamic_cast<WanderingEnemy *>(i);
+                    // Lazer Lz = dynamic_cast<Lazer *>(P1_CollidingItems[i]);
+
+                    if(Obj){
+
+                        ColPlat = true;
+                        LastPlatformTouch = Obj;
+                        LastPlatformTouch->setMode(1);
+                        LastPlatformTouch->setIsPlayerOnTop(true);
+
+                        if(Obj->getIsConductive()){
+                            Obj->setIsPlayerOnTop(true);
+
+                            if(!P->IsDischarging())
+                                P->DischargeStart();
+                        }
+
+                        if((P->Head->y() < Obj->y()) || (P->Head->y() < (Obj->y() + Obj->pixmap().height()))){
+
+                            P->setHeadOnPlatform(true);
+                            P->setHeadGroundFriction(Obj->getFriction());
+                            //ColPlat = true;
+
+                        }
+                        else if((P->Head->y() > Obj->y()) || (P->Head->y() > (Obj->y() + Obj->pixmap().height()))){
+
+                            //ColPlat = false;
+                            //P->setSpeed_HY(-(P->getSpeed_HY() / 2));
+
+                        }
+
+                        if(((P->x() > Obj->x()) xor (P->x() < Obj->x())) && (Obj->y() < P->y() + P->pixmap().height() - 1)){
+
+                            //E->setY(Obj->y() - E->pixmap().height());
+                            //qDebug() << QString("Colisiona al muro");
+                            P->Head->setY(Obj->y() - P->Head->pixmap().height());
+                            P->setSpeed_HX(0);
+
+                            if((P->Head->x() < Obj->x() && P->getAccel_HX() > 0) xor (P->Head->x() > Obj->x() && P->getAccel_HX() < 0))
+                                P->setAccel_HX(0);
+
+                        }
+                    }
+
+                    else if(Pl);
+
+                    else if(We){
+                        if(!P->IsInmune()){
+
+                            //if(Lz && Lz.isActive()){
+                            //  P->setLifes(P->getLifes() - 1);
+                            //}
+                            //else (!Lz){
+                            P->setLifes(P->getLifes() - 1);
+                            P->InmunityStart(250);
+                            if(!P->getLifes()){
+                                scene->removeItem(P->Head);
+                                scene->removeItem(P);
+                            }
+                            //}
+                        }
+                    } /// Damage player
+
+                    if(!ColPlat){
+                        P->setHeadOnPlatform(false);
+                        P->setHeadGroundFriction(0);
+                        P->DischargeStop();
+
+                        if(LastPlatformTouch){
+                            LastPlatformTouch->setMode(0);
+                            LastPlatformTouch->setIsPlayerOnTop(false);
+                        }
+                    }
+                }
+            }
+        }
+        ///****** Wandering enemy collitions
+        foreach(WanderingEnemy *E, W_Enemies){
+
+            QList<QGraphicsItem *> E_CollidingItems = E->collidingItems();
+            bool ColPlat = false;
+
+            if(E_CollidingItems.isEmpty()){
+
+                E->setOnPlatform(false);
+                E->setGroundFr(0);
+
+            }
+
+            else{
+                foreach(QGraphicsItem *i, E_CollidingItems){
+                    Platform *Obj = dynamic_cast<Platform *>(i);
+
+                    if(Obj && !ColPlat){
+                        if((E->y() < Obj->y()) || (E->y() < (Obj->y() + Obj->pixmap().height()))){
+
+                            if((E->y() + (E->pixmap().height() / 2)) < Obj->y())
+                                E->setY(Obj->y() - E->pixmap().height() - 0.1);
+
+                            E->setOnPlatform(true);
+                            E->setGroundFr(Obj->getFriction());
+                            ColPlat = true;
+
+                        }
+                        else if((E->y() > Obj->y()) || (E->y() > (Obj->y() + Obj->pixmap().height()))){
+
+                            ColPlat = false;
+                            E->setSpeed_Y(-(E->getSpeed_Y() / 2));
+
+                        }
+
+                        if(((E->x() > Obj->x()) xor (E->x() < Obj->x())) && (Obj->y() < E->y() + E->pixmap().height() - 1)){
+
+                            //E->setY(Obj->y() - E->pixmap().height());
+                            //qDebug() << QString("Colisiona al muro");
+                            E->setDirection(!E->getDirection());
+                            E->setX(E->x() + (E->getDirection()? 2 : -2));
+
+                            if((E->x() < Obj->x() && E->getAccel_X() > 0) xor (E->x() > Obj->x() && E->getAccel_X() < 0))
+                                E->setAccel_X(0);
+
+                        }
+                    }
+                }
+                if(!ColPlat){
+                    E->setOnPlatform(false);
+                    E->setGroundFr(0);
+                }
+            }
+        }
+    });
+
+    CollitionsTimer->start(10);
+
+}

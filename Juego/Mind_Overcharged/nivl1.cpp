@@ -33,8 +33,8 @@ Nivl1::Nivl1(QWidget *parent) :
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     //Creates the player and adds it to the scene
-    Players.push_back(new Player(5, 55, 0, 1, ":/new/prefix1/Images/PlayerBody.png", ":/new/prefix1/Images/GreenHead.png"));
-    Players[0]->setAirResistance(0.08);
+    Players.push_back(new Player(40, 20, 0, 1, ":/new/prefix1/Images/PlayerBody.png", ":/new/prefix1/Images/GreenHead.png"));
+    Players[0]->setAirResistance(0.0117);
     scene->addItem(Players[0]);
     scene->addItem(Players[0]->Head);
     Players[0]->setPos(50, 100);
@@ -167,7 +167,7 @@ void Nivl1::addFloor(){
 
     for(int i = 0; P_Count > i; i++){
 
-        obstaculos.push_back(new Platform(0.91f, 1));
+        obstaculos.push_back(new Platform(0.91f, true));
     }
 
     obstaculos[0]->setPixmap(QPixmap(":/new/prefix1/Images/LargeSolidPlatform.png"));

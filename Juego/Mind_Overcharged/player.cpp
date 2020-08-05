@@ -257,6 +257,10 @@ void Player::MovePlayer(){
         Nivl1 *Wenaz = Nivl1::getMainWinPtr();
         Wenaz->view->centerOn(Wenaz->Players[0]);
     }
+    else if(aux == 2){
+        Nivl2 *Wenaz = Nivl2::getMainWinPtr();
+        Wenaz->view->centerOn(Wenaz->Players[0]);
+    }
 
     Last_XPos = this->x();
     CurrentKey = Qt::Key_0;
