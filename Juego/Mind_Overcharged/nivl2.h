@@ -35,7 +35,7 @@ public:
 
     QGraphicsScene * scene;
     QGraphicsView * view;
-    class Player * player;
+    QList <class Player *> Players;
     QList <Portal *> portal;
 
     QList <Platform *> obstaculos;
@@ -48,8 +48,12 @@ public:
 
     static Nivl2 *pNivl2;
 
+    string UserName;
+
 private:
     Ui::Nivl2 *ui;
+
+    void addFloor();
 };
 
 #endif // NIVL2_H
