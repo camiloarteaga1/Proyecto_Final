@@ -35,7 +35,8 @@ SOURCES += \
     prueba.cpp \
     sprite.cpp \
     user.cpp \
-    vidas.cpp
+    vidas.cpp \
+    wanderingenemy.cpp
 
 HEADERS += \
     boton.h \
@@ -56,7 +57,8 @@ HEADERS += \
     prueba.h \
     sprite.h \
     user.h \
-    vidas.h
+    vidas.h \
+    wanderingenemy.h
 
 FORMS += \
     final.ui \

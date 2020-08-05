@@ -27,7 +27,7 @@ public:
     static Multiplayer *getMainWinPtr();
 
     QGraphicsView * view;
-    QList <Player *> Players;
+    QList <class Player *> Players;
     QList <Platform *> obstaculos;
 
 private:

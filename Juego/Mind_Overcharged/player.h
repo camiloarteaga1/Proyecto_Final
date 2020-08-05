@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <math.h>
 
+#include "multiplayer.h"
 #include "nivl1.h"
 
 #define MAX_LIFES 3 /// Player's max lifes
@@ -16,7 +17,7 @@
 #define MAX_X_SPEED 3.00 /// Max horizontal player speed
 #define Vt(Mass) pow((2 * Mass * G) / (1.17 * 0.06 * 0.6), 0.5) /// Terminal speed formula
 
-
+/// How it still alive?
 class Player: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
@@ -46,13 +47,15 @@ public:
 
     /// Player data
     short getLifes();
-    short getID(); /// Revizar
+    short getID();
     short getCharge();
     bool getHeadStatus();
     short getSeparateTime();
     Qt::Key getKeyPressing();
     double getAirResistance();
     short getInmunityTime();
+    bool IsInmune();
+    bool IsDischarging();
 
     ///**************************  Setters  **************************///
     /// Body
@@ -115,15 +118,9 @@ private slots:
     void SeparateHead();
     void InmunityTime();
 
-public slots:
-    /// Sprites
-    void BodySprite();
-    void HeadSprite();
-
 /// Variables
 public:
     QGraphicsPixmapItem *Head;
-
     int aux;
 
 private:
@@ -135,7 +132,6 @@ private:
     QTimer *MoveTimer;
     QTimer *ThrowTimer;
     QTimer *DischargeHeadTimer;
-    QTimer *SpritesTimer;
     QTimer *SeparateHeadTimer;
     QTimer *InmunityTimer;
 
@@ -148,10 +144,6 @@ private:
     short P_Lifes;
     short SepTime;
     short Inmunity;
-
-
-    //float SpriteRows, SpriteColumns; /// Sprite dimensions
-    //float SpriteWidth, SpriteHeight;
 
     double AirRes, BGroundFr, HGroundFr;
     Qt::Key CurrentKey;

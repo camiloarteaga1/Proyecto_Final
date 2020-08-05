@@ -24,5 +24,15 @@
         <file>Images/Portal2.png</file>
         <file>Images/PortalR1.png</file>
         <file>Images/PortalR2.png</file>
+        <file>Images/ActiveHolePlatform.png</file>
+        <file>Images/ActiveLPlatform.png</file>
+        <file>Images/ActiveMPlatform.png</file>
+        <file>Images/ChargedPlatform.png</file>
+        <file>Images/GreenHead.png</file>
+        <file>Images/Inmunity1Head.png</file>
+        <file>Images/Inmunity2Head.png</file>
+        <file>Images/RedHead.png</file>
+        <file>Images/WanderingEnemy.png</file>
+        <file>Images/YellowHead.png</file>
     </qresource>
 </RCC>

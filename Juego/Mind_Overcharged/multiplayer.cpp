@@ -45,15 +45,15 @@ Multiplayer::Multiplayer(QWidget *parent) :
 
     //Add obstacles
 
-    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/LargeSolidPlatform.png"));
+    obstaculos.push_back(new Platform(0.91, true, ":/new/prefix1/Images/LargeSolidPlatform.png"));
     scene->addItem(obstaculos[0]);
     obstaculos[0]->setPos(20, 4960);
 
-    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/LargeSolidPlatform.png"));
+    obstaculos.push_back(new Platform(0.91, true, ":/new/prefix1/Images/LargeSolidPlatform.png"));
     scene->addItem(obstaculos[1]);
     obstaculos[1]->setPos(410, 4960);
 
-    obstaculos.push_back(new Platform(0.91, true,":/new/prefix1/Images/SolidPlatform.png"));
+    obstaculos.push_back(new Platform(0.91, true, ":/new/prefix1/Images/SolidPlatform.png"));
     scene->addItem(obstaculos[2]);
     obstaculos[2]->setPos(800, 4960);
 

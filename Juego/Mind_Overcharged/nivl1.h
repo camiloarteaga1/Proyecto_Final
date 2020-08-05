@@ -11,6 +11,7 @@
 #include <QGraphicsTextItem>
 #include <QList>
 #include <QObject>
+#include <QTimer>
 
 #include "vidas.h"
 #include "checkpoint.h"
@@ -18,6 +19,7 @@
 #include "player.h"
 #include "platform.h"
 #include "enemies.h"
+#include "wanderingenemy.h"
 using namespace std;
 
 namespace Ui {
@@ -33,17 +35,24 @@ public:
     ~Nivl1();
     QGraphicsScene * scene;
     QGraphicsView * view;
-    class Player * player;
 
+    QList <class Player *> Players;
     QList <Platform *> obstaculos;
     QList <Estrella *> corazones;
+    QList <WanderingEnemy *> W_Enemies;
     //QList <Enemies *> enemigos;
 
     void keyPressEvent(QKeyEvent *Event);
+    void addFloor();
 
     static Nivl1 *getMainWinPtr();
 
     static Nivl1 *pNivl1;
+
+    void CollitionDetection();
+
+    QTimer * CollitionsTimer;
+
 
     //Vidas *vidas;
 

@@ -1,11 +1,11 @@
 #include "player.h"
-#include "multiplayer.h"
+//#include "game.h"
 
-//#include <QDebug>
+#include <QDebug>
 #include <QPointF>
 
 Player::Player(short HeadMass, short BodyMass, short id, int auxi, QString body, QString head, QGraphicsItem *parent)
-    : HeadStatus(true), OnPlatform(false), HMass(HeadMass), BMass(BodyMass), ID(id), SepTime(MAX_SEPARATE_TIME), Inmunity(3), AirRes(0), BGroundFr(0), HGroundFr(0)
+    : HeadStatus(true), OnPlatform(false), HMass(HeadMass), BMass(BodyMass), ID(id), SepTime(MAX_SEPARATE_TIME), Inmunity(3), AirRes(0.017), BGroundFr(0), HGroundFr(0)
 {
 
     aux = auxi;
@@ -30,15 +30,12 @@ Player::Player(short HeadMass, short BodyMass, short id, int auxi, QString body,
     MoveTimer = new QTimer;
     ThrowTimer = new QTimer;
     DischargeHeadTimer = new QTimer;
-    SpritesTimer = new QTimer;
     InmunityTimer = new QTimer;
     SeparateHeadTimer = new QTimer;
 
     connect(MoveTimer, SIGNAL(timeout()), this, SLOT(MovePlayer()));
     connect(ThrowTimer, SIGNAL(timeout()), this, SLOT(MoveHead()));
     connect(DischargeHeadTimer, SIGNAL(timeout()), this, SLOT(DischargeHead()));
-    connect(SpritesTimer, SIGNAL(timeout()), this, SLOT(BodySprite()));
-    connect(SpritesTimer, SIGNAL(timeout()), this, SLOT(HeadSprite()));
     connect(InmunityTimer, SIGNAL(timeout()), this, SLOT(InmunityTime()));
     connect(SeparateHeadTimer, SIGNAL(timeout()), this, SLOT(SeparateHead()));
 
@@ -61,7 +58,14 @@ void Player::ThrowObj(){
 
 void Player::PlayerDie(){
 
+    MoveStop();
+    ThrowStop();
+    DischargeStop();
+    SeparateStop();
+    InmunityStop();
 
+    this->Head->~QGraphicsPixmapItem();
+    this->~Player();
 
 }
 
@@ -95,7 +99,8 @@ short Player::getSeparateTime(){return SepTime;}
 Qt::Key Player::getKeyPressing(){return CurrentKey;}
 double Player::getAirResistance(){return AirRes;}
 short Player::getInmunityTime(){return Inmunity;}
-
+bool Player::IsInmune(){return InmunityTimer->isActive();}
+bool Player::IsDischarging(){return DischargeHeadTimer->isActive();}
 
 ///**************************  Setters  **************************///
 /// Body
@@ -147,16 +152,20 @@ void Player::setHeadOnPlatform(bool Status){
 }
 
 /// Player data
-void Player::setLifes(short LifesCount){P_Lifes = LifesCount;}
+void Player::setLifes(short LifesCount){
+
+    P_Lifes = LifesCount > MAX_LIFES? MAX_LIFES : LifesCount;
+
+    if(!P_Lifes)
+        PlayerDie();
+
+}
 void Player::setCharge(short Charge){HeadCharge = Charge;}
 void Player::setHeadStatus(bool HaveIt){HeadStatus = HaveIt;}
 void Player::setSeparateTime(short TimeSec){SepTime = TimeSec;}
 void Player::setKeyPressing(Qt::Key Key){CurrentKey = Key;}
 void Player::setAirResistance(double AirResistance){AirRes = AirResistance;}
-
-
 void Player::setInmunityTime(short TimeSec){Inmunity = TimeSec;}
-
 
 ///************************** Timers controlers  **************************///
 /// Move Timer
@@ -170,10 +179,6 @@ void Player::ThrowStop(){ThrowTimer->stop();}
 /// Discharge Timer
 void Player::DischargeStart(int TimeMls){DischargeHeadTimer->start(TimeMls);}
 void Player::DischargeStop(){DischargeHeadTimer->stop();}
-
-/// Sprites Timer
-void Player::SpritesStart(int TimeMls){SpritesTimer->start(TimeMls);}
-void Player::SpritesStop(){SpritesTimer->stop();}
 
 /// 10 seconds Timer
 void Player::SeparateStart(int TimeMls){SeparateHeadTimer->start(TimeMls);}
@@ -248,9 +253,8 @@ void Player::MovePlayer(){
             setPos(50, 100);
         }
         Nivl1 *Wenaz = Nivl1::getMainWinPtr();
-        Wenaz->view->centerOn(Wenaz->player);
+        Wenaz->view->centerOn(Wenaz->Players[0]);
     }
-
 
     Last_XPos = this->x();
     CurrentKey = Qt::Key_0;
@@ -287,8 +291,10 @@ void Player::MoveHead(){
     HSpeed.setX(HSpeed.x() > MAX_X_SPEED? MAX_X_SPEED : HSpeed.x() < -MAX_X_SPEED? -MAX_X_SPEED : HSpeed.x());
     HSpeed.setY(HSpeed.y() > Vt(this->HMass)? Vt(this->HMass) : HSpeed.y());
 
-    if(HeadOnPlatform && HSpeed.y() > 0)
+    if(HeadOnPlatform && HSpeed.y() > 0){
         HSpeed.setY(0);
+    }
+
 
     /// Change pos
     Head->setX(Head->x() + HSpeed.x());
@@ -296,8 +302,8 @@ void Player::MoveHead(){
 
     /// If stopped by wall set move x variables to 0
     if(Last_XPos == Head->x()){
-        BAccel.setX(0);
-        BSpeed.setX(0);
+        HAccel.setX(0);
+        HSpeed.setX(0);
     }
 
     Last_XPos = Head->x();
@@ -317,6 +323,11 @@ void Player::DischargeHead(){
 
     setCharge(getCharge() - 1);
 
+    if(!getCharge())
+        PlayerDie();
+
+    qDebug() << QString("Carga del jugador: ") << QString::number(getCharge());
+
 }
 
 void Player::PickUpHead(){
@@ -324,6 +335,9 @@ void Player::PickUpHead(){
     setHeadStatus(true);
     Head->setPos(qreal(this->x() - (this->pixmap().width() / 2)),
                  qreal(this->y() - Head->pixmap().height()));
+
+    //if(IsDischarging())
+        //DischargeStop();
 
     ThrowStop();
     SeparateStop();
@@ -339,40 +353,37 @@ void Player::SeparateHead(){
 
 }
 
+/// ~359
 void Player::InmunityTime(){
 
     static short Joins = 0;
     static short ImT = getInmunityTime();
 
-    if(!Joins)
-        SpritesStop();
-
-    else if(Joins == 12){
+    if(Joins == 12){
         InmunityStop();
-        SpritesStart(250);
         Joins = 0;
         setInmunityTime(3);
+
+        switch(P_Lifes){
+
+        case 3: Head->setPixmap(QPixmap(":/new/prefix1/Images/GreenHead.png")); break;
+        case 2: Head->setPixmap(QPixmap(":/new/prefix1/Images/YellowHead.png")); break;
+        case 1: Head->setPixmap(QPixmap(":/new/prefix1/Images/RedHead.png")); break;
+
+        }
+
         return;
     }
 
+    if(Joins % 2)
+        Head->setPixmap(QPixmap(":/new/prefix1/Images/Inmunity1Head.png"));
+    else
+        Head->setPixmap(QPixmap(":/new/prefix1/Images/Inmunity2Head.png"));
 
 
-    /// Inmunity time sprite
+    if(Joins % 4 == 0 && Joins)
+        ImT--;
 
-    if(Joins % 4 == 0)
-        ImT -= 1;
-
-}
-
-/// Sprites
-void Player::BodySprite(){
-
-    /// Sprite Code...
-
-}
-
-void Player::HeadSprite(){
-
-    /// Sprite Code...
+    Joins += 1;
 
 }
