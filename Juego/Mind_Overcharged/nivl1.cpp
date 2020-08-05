@@ -22,6 +22,7 @@ Nivl1::Nivl1(QWidget *parent) :
 
     obstaculos.reserve(45);
     corazones.reserve(2);
+    W_Enemies.reserve(10);
 
     scene->setSceneRect(0, 0, 740, 5000);
     view->setBackgroundBrush(QBrush(Qt::white)); //Gamemode background
@@ -43,6 +44,40 @@ Nivl1::Nivl1(QWidget *parent) :
     //Add objects
     //Floor
     addFloor();
+
+    //Enemies
+    W_Enemies.push_back(new WanderingEnemy(5, 0));
+    scene->addItem(W_Enemies[0]);
+    W_Enemies[0]->setPos(400, 4440);
+
+    W_Enemies.push_back(new WanderingEnemy(5, 0));
+    scene->addItem(W_Enemies[1]);
+    W_Enemies[1]->setPos(200, 3940);
+
+    W_Enemies.push_back(new WanderingEnemy(5, 0));
+    scene->addItem(W_Enemies[2]);
+    W_Enemies[2]->setPos(540, 3440);
+
+    W_Enemies.push_back(new WanderingEnemy(5, 0));
+    scene->addItem(W_Enemies[3]);
+    W_Enemies[3]->setPos(100, 2940);
+
+    W_Enemies.push_back(new WanderingEnemy(5, 0));
+    scene->addItem(W_Enemies[4]);
+    W_Enemies[4]->setPos(300, 2440);
+
+    W_Enemies.push_back(new WanderingEnemy(5, 0));
+    scene->addItem(W_Enemies[5]);
+    W_Enemies[5]->setPos(80, 1940);
+
+    W_Enemies.push_back(new WanderingEnemy(5, 0));
+    scene->addItem(W_Enemies[6]);
+    W_Enemies[6]->setPos(560, 940);
+
+    W_Enemies.push_back(new WanderingEnemy(5, 0));
+    scene->addItem(W_Enemies[7]);
+    W_Enemies[7]->setPos(400, 1440);
+
 
     //Lifes
     corazones.push_back(new Estrella());
@@ -369,14 +404,14 @@ void Nivl1::CollitionDetection(){
 
                         P->setLifes(P->getLifes() + 1);
                         P->InmunityStart(125);
-                        Star->~Estrella();
+                        Star->~Estrella(); //Erase the star
 
                     }
 
                     else if(Cp){
 
-                        qDebug() << QString::fromStdString(this->UserName);
-                        DataCollector->overload(to_string(P->getLifes()), "1", this->UserName);
+                        //qDebug() << QString::fromStdString(this->UserName);
+                        DataCollector->overload(to_string(P->getLifes()), "1", this->UserName); //Modifica el archivo de guardado
 
                     }
                 }
