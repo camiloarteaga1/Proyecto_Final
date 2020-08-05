@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include <QMessageBox>
+#include <string>
+#include <iostream>
 
 #include "user.h"
 #include "multiplayer.h"
@@ -32,10 +34,14 @@ private slots:
 private:
     Ui::Menu *ui;
 
-    Multiplayer *multi;
-    Nivl1 * nivel1;
-    Nivl2 * nivel2;
+    class Multiplayer *multi;
+    class Nivl1 * nivel1;
+    class Nivl2 * nivel2;
     class User * user;
+
+public:
+    std::string UserName;
+
 };
 
 #endif // MENU_H

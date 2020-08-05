@@ -1,5 +1,6 @@
 #include "nivl1.h"
 #include "ui_nivl1.h"
+#include "user.h"
 
 #include <QDebug>
 
@@ -16,6 +17,7 @@ Nivl1::Nivl1(QWidget *parent) :
     scene = new QGraphicsScene(this);
     view = new QGraphicsView(this);
 
+    DataCollector = new User;
     Checkpoint * punto = new Checkpoint();
 
     obstaculos.reserve(45);
@@ -371,9 +373,16 @@ void Nivl1::CollitionDetection(){
 
                     }
 
+                    else if(Cp){
+
+                        qDebug() << QString::fromStdString(this->UserName);
+                        DataCollector->overload(to_string(P->getLifes()), "1", this->UserName);
+
+                    }
                 }
+
                 if(!ColPlat){
-                    qDebug() << QString("Tambien pasa aqui");
+                    //qDebug() << QString("Tambien pasa aqui");
                     P->setOnPlatform(false);
                     P->setBodyGroundFriction(0);
                     P->DischargeStop();

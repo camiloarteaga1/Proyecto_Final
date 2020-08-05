@@ -18,7 +18,7 @@ User::~User()
 void User::on_pushButton_clicked() //Receives user data
 {
     vector <int> datos;
-    QString name, contra;
+    QString contra;
     string data;
     Menu * cosa = new Menu(this); //To show the ui Menu
     datos.reserve(3);
@@ -54,6 +54,7 @@ void User::on_pushButton_clicked() //Receives user data
         }
     }
 
+    cosa->UserName = name.toStdString();
     cosa->show();
     this->hide();
 }
@@ -171,18 +172,21 @@ void User::overload(string life, string level, string user)
             idc += line.at(i); //String with username
         }
 
-        for (unsigned int i = 0; i < idc.length(); ++i){
-            if (idc.at(i) != user.at(i)) //Compares username of the player with the username of the archieve
-                break;
+        if(idc.length() == user.length()){
+            for (unsigned int i = 0; i < idc.length(); ++i){
 
-            else if (idc == user)
-                aux = true;
+                if(idc.at(i) != user.at(i)) //Compares username of the player with the username of the archieve
+                    break;
+
+                else if (idc == user)
+                    aux = true;
+            }
         }
 
         if (aux == true){ //True if that's the user's data
             aux = false;
 
-            for (unsigned int i = line.find(",") + 1; i < line.find(";"); ++i){ //From the ";" until the ","
+            for (unsigned int i = line.find(";") + 1; i < line.find(","); ++i){ //From the ";" until the ","
                 password += line.at(i); //String with the password
             }
 

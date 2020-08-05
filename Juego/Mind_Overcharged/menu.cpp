@@ -17,6 +17,7 @@ Menu::~Menu()
 void Menu::on_BNuevo_clicked()
 {
     nivel1 = new Nivl1();
+    nivel1->UserName = this->UserName;
     nivel1->show();
     this->hide();
 }

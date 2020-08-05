@@ -13,6 +13,7 @@
 #include <QObject>
 #include <QTimer>
 
+#include "user.h"
 #include "vidas.h"
 #include "checkpoint.h"
 #include "estrella.h"
@@ -35,6 +36,8 @@ public:
     ~Nivl1();
     QGraphicsScene * scene;
     QGraphicsView * view;
+    class User *DataCollector;
+    string UserName;
 
     QList <class Player *> Players;
     QList <Platform *> obstaculos;
@@ -58,6 +61,7 @@ public:
 
 private:
     Ui::Nivl1 *ui;
+
 };
 
 #endif // NIVL1_H

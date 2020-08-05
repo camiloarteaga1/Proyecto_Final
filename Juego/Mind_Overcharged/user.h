@@ -42,6 +42,10 @@ private:
 
     template <typename T>
     void renome(T dirtemp, T dircamb);
+
+public:
+    QString name;
+
 };
 
 #endif // USER_H
