@@ -25,7 +25,7 @@ Nivl1::Nivl1(QWidget *parent) :
     W_Enemies.reserve(10);
 
     scene->setSceneRect(0, 0, 740, 5000);
-    view->setBackgroundBrush(QBrush(Qt::white)); //Gamemode background
+    view->setBackgroundBrush(QBrush(QImage(":/new/prefix1/Images/1leveBackground.jpg"))); //Gamemode background
     view->setScene(scene); //Scene initialized
     view->resize(740, 900);
 
@@ -88,6 +88,7 @@ Nivl1::Nivl1(QWidget *parent) :
     corazones.push_back(new Estrella());
     scene->addItem(corazones[1]);
     corazones[1]->setPos(60, 3960);
+
 
     //Add Checkpoint
     scene->addItem(punto);
@@ -393,15 +394,12 @@ void Nivl1::CollitionDetection(){
                             //  P->setLifes(P->getLifes() - 1);
                             //}
                             //else (!Lz){
-                            //Erase the enemy
-                            scene->removeItem(We);
-                            We->~WanderingEnemy();
                             P->setLifes(P->getLifes() - 1);
                             P->InmunityStart(250);
-                            ui->label_vidas->setText(QString::number(P->getLifes()));
+                            ui->label_vidas->setText(QString::number(P->getLifes())); //Set scene lifes
                             ui->label_vidas->setFont(QFont("Forte", 24));
                             if(!P->getLifes()){
-                                scene->removeItem(P->Head);
+                                scene->removeItem(P->Head); //Remove head if player is out of lifes
                                 scene->removeItem(P);
                             }
                             //}
@@ -413,7 +411,7 @@ void Nivl1::CollitionDetection(){
                         P->setLifes(P->getLifes() + 1);
                         P->InmunityStart(125);
                         Star->~Estrella(); //Erase the star
-                        ui->label_vidas->setText(QString::number(P->getLifes()));
+                        ui->label_vidas->setText(QString::number(P->getLifes())); //Set scene lifes
                         ui->label_vidas->setFont(QFont("Forte", 24));
 
                     }
@@ -421,8 +419,8 @@ void Nivl1::CollitionDetection(){
                     else if(Cp){
 
                         //qDebug() << QString::fromStdString(this->UserName);
-                        DataCollector->overload(to_string(P->getLifes()), "1", this->UserName); //Modifica el archivo de guardado
-                        vid = P->getLifes();
+                        DataCollector->overload(to_string(P->getLifes()), "2", this->UserName); //Modifica el archivo de guardado
+                        vid = P->getLifes(); //Set lifes to next game
 
                     }
                 }
@@ -595,74 +593,6 @@ void Nivl1::CollitionDetection(){
             }
         }
     });
-
-    /*connect(CollitionHead, &QTimer::timeout,[=](){
-
-        QList<QGraphicsItem *> P1H_CollidingItems = PlayerTest->Head->collidingItems();
-        bool ColPlat = false;
-
-        if(P1H_CollidingItems.isEmpty()){
-
-            PlayerTest->setOnPlatform(false);
-            PlayerTest->setBodyGroundFriction(0);
-
-        }
-
-        else{
-            foreach(QGraphicsItem *i, P1H_CollidingItems){
-                Platform *Obj = dynamic_cast<Platform *>(i);
-                Player *Pl = dynamic_cast<Player *>(i);
-                // Lazer Lz = dynamic_cast<Lazer *>(P1_CollidingItems[i]);
-
-                if(Obj && !ColPlat){
-                    if((PlayerTest->Head->y() < Obj->y()) || (PlayerTest->Head->y() < (Obj->y() + Obj->pixmap().height()))){
-
-                        PlayerTest->setHeadOnPlatform(true);
-                        PlayerTest->setHeadGroundFriction(Obj->getFriction());
-                        ColPlat = true;
-
-                    }
-                    else if((PlayerTest->Head->y() > Obj->y()) || (PlayerTest->Head->y() > (Obj->y() + Obj->pixmap().height()))){
-
-                        ColPlat = false;
-                        PlayerTest->setSpeed_HY(-(PlayerTest->getSpeed_HY() / 2));
-
-                    }
-
-                    if((PlayerTest->Head->x() > Obj->x() - Obj->pixmap().width() xor PlayerTest->Head->x() < Obj->x()) && (Obj->y() < PlayerTest->Head->y() + PlayerTest->Head->pixmap().height()))
-                    {
-
-                        PlayerTest->Head->setY(Obj->y() - PlayerTest->Head->pixmap().height());
-                        //PlayerTest->setSpeed_BX(0);
-
-                        //if((PlayerTest->x() < Obj->x() && PlayerTest->getAccel_BX() > 0) xor (PlayerTest->x() > Obj->x() && PlayerTest->getAccel_BX() < 0))
-                        //    PlayerTest->setAccel_BX(0);
-
-                    }
-                }
-
-                else if(Pl);
-
-                else{
-                    if(!PlayerTest->getInmunityTime()){
-                        //if(Lz && Lz.isActive()){
-                        //  PlayerTest->setLifes(PlayerTest->getLifes() - 1);
-                        //}
-                        //else
-                        PlayerTest->setLifes(PlayerTest->getLifes() - 1);
-                        PlayerTest->InmunityStart(250);
-                        qDebug() << QString("Vidas: ") <<QString::number(PlayerTest->getLifes());
-                    }
-                }
-
-            }
-
-            if(!ColPlat){
-                PlayerTest->setHeadOnPlatform(false);
-                PlayerTest->setHeadGroundFriction(0);
-            }
-        }
-    });*/
 
     CollitionsTimer->start(10);
 
