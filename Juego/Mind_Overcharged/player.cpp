@@ -156,6 +156,7 @@ void Player::setLifes(short LifesCount){
 
     P_Lifes = LifesCount > MAX_LIFES? MAX_LIFES : LifesCount;
 
+    //Si se queda sin vidas vuelva a la posición inicial
     if (aux == 1){
         if(!P_Lifes){
             setPos(50, 100);
@@ -258,6 +259,7 @@ void Player::MovePlayer(){
         Wenaz->view->centerOn(Wenaz->Players[0]);
     }
 
+    //Si se sale de la escena vuelva a la posición inicial
     if (aux == 1){
         if (x()<0 or x()>740){
             setPos(50, 100);
@@ -266,6 +268,9 @@ void Player::MovePlayer(){
         Wenaz->view->centerOn(Wenaz->Players[0]);
     }
     else if(aux == 2){
+        if (x()<0 or x()>740 or y()>5000){
+            setPos(192, 4870);
+        }
         Nivl2 *Wenaz = Nivl2::getMainWinPtr();
         Wenaz->view->centerOn(Wenaz->Players[0]);
     }
@@ -282,7 +287,7 @@ void Player::MovePlayer(){
     return;
 
 }
-
+//Movimiento de la cabeza
 void Player::MoveHead(){
 
     static qreal Last_XPos = 0;
@@ -332,7 +337,7 @@ void Player::MoveHead(){
     return;
 
 }
-
+//Descargar la cabeza
 void Player::DischargeHead(){
 
     setCharge(getCharge() - 1);
@@ -343,7 +348,7 @@ void Player::DischargeHead(){
     qDebug() << QString("Carga del jugador: ") << QString::number(getCharge());
 
 }
-
+//Recoger la cabeza pegándola al cuerpo
 void Player::PickUpHead(){
 
     setHeadStatus(true);
@@ -358,11 +363,12 @@ void Player::PickUpHead(){
     setSeparateTime(MAX_SEPARATE_TIME);
 
 }
-
+//Tiempo en el que la cabeza puede estar separada
 void Player::SeparateHead(){
 
     setSeparateTime(getSeparateTime() - 1);
 
+    //Si el tiempo sin cabeza se acaba reinicia
     if(!getSeparateTime()){/*PlayerDie();*/
         if (aux == 1){
             setPos(50, 100);
@@ -378,7 +384,7 @@ void Player::SeparateHead(){
 
 }
 
-/// ~359
+/// ~359 Tiempo de inmunidad tras una colision que quita vidas
 void Player::InmunityTime(){
 
     static short Joins = 0;
