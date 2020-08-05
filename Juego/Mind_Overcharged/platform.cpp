@@ -58,6 +58,7 @@ void Platform::ConductStart(int TimeMls){ConductTimer->start(TimeMls);}
 void Platform::ConductStop(){ConductTimer->stop();}
 
 ///***********************  Slots  ***********************///
+//Plataforma cargada
 void Platform::Conductivity(){
 
     QList<QGraphicsItem *>CollidingItems = collidingItems();
@@ -106,16 +107,17 @@ void Platform::Conductivity(){
         }
     }
 
-    if(getIsCharged()){
+    if(getIsCharged()){ //Se cambia la imagen por la de cargada
         setPixmap(QPixmap(":/Images/ChargedPlatform.png"));
         SpecialFunct();
     }
 
-    else
+    else //Imagen si está descargada
         setPixmap(QPixmap(":/Images/SolidPlatform.png"));
 
 }
 
+//Plataformas no cargables
 void Platform::DisableCharge(){
 
     static short CclsToDisable = 3;

@@ -34,6 +34,7 @@ private slots:
 private:
     Ui::Menu *ui;
 
+    //To show the game levels
     class Multiplayer *multi;
     class Nivl1 * nivel1;
     class Nivl2 * nivel2;

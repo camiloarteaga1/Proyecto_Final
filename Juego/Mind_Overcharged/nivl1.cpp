@@ -11,25 +11,26 @@ Nivl1::Nivl1(QWidget *parent) :
     ui(new Ui::Nivl1)
 {
     ui->setupUi(this);
-    setWindowTitle("Nivel 1");
+    setWindowTitle("Nivel 1"); //Title
 
     //Creates the scene
     scene = new QGraphicsScene(this);
     view = new QGraphicsView(this);
 
-    DataCollector = new User;
-    Checkpoint * punto = new Checkpoint();
+    DataCollector = new User; //To save the user data
+    Checkpoint * punto = new Checkpoint(); //Flag that indicates another level
 
+    //Objects added to the scene
     obstaculos.reserve(45);
     corazones.reserve(2);
     W_Enemies.reserve(10);
 
-    scene->setSceneRect(0, 0, 740, 5000);
+    scene->setSceneRect(0, 0, 740, 5000); //Scene rect
     view->setBackgroundBrush(QBrush(QImage(":/new/prefix1/Images/1leveBackground.jpg"))); //Gamemode background
     view->setScene(scene); //Scene initialized
-    view->resize(740, 900);
+    view->resize(740, 900); //View rect
 
-    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); //Disables the scroll bars
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     //Creates the player and adds it to the scene
@@ -96,10 +97,11 @@ Nivl1::Nivl1(QWidget *parent) :
 
     pNivl1 = this;
 
-    CollitionDetection();
+    CollitionDetection(); //Detects the collitions with the floor and the objects
 
 }
 
+//Keys to move the character
 void Nivl1::keyPressEvent(QKeyEvent *Event){
 
     static Qt::Key LastKey = Qt::Key_0;
@@ -167,9 +169,10 @@ void Nivl1::addFloor(){
 
     for(int i = 0; P_Count > i; i++){
 
-        obstaculos.push_back(new Platform(0.91f, true));
+        obstaculos.push_back(new Platform(0.91f, true)); //Add the floor to the QList
     }
 
+    //Set the platform pos and picture
     obstaculos[0]->setPixmap(QPixmap(":/new/prefix1/Images/LargeSolidPlatform.png"));
     obstaculos[0]->setPos(60, 4960);
 
@@ -295,7 +298,7 @@ void Nivl1::addFloor(){
     obstaculos[40]->setPos(680, 4460);
 
 
-    for(int i = 0; P_Count > i; i++)
+    for(int i = 0; P_Count > i; i++) //Add items to the scene
         scene->addItem(obstaculos[i]);
 
 }
@@ -387,6 +390,7 @@ void Nivl1::CollitionDetection(){
                         }
                     }/// Collides a platform
 
+                    //Collides with an enemy
                     else if(We){
                         if(!P->IsInmune()){
 
@@ -406,6 +410,7 @@ void Nivl1::CollitionDetection(){
                         }
                     }/// Damage player
 
+                    //Add new life to the player
                     else if(Star){
 
                         P->setLifes(P->getLifes() + 1);
@@ -415,18 +420,18 @@ void Nivl1::CollitionDetection(){
                         ui->label_vidas->setFont(QFont("Forte", 24));
 
                     }
-
+                    //Checkpoint collition
                     else if(Cp){
 
                         //qDebug() << QString::fromStdString(this->UserName);
                         DataCollector->overload(to_string(P->getLifes()), "2", this->UserName); //Modifica el archivo de guardado
                         nivl2 = new Nivl2();
                         nivl2->UserName = this->UserName;
-                        nivl2->show();
-                        Players[0]->setPos(192, 4870);
+                        nivl2->show(); //Shows second level
+                        Players[0]->setPos(192, 4870); //Player pos in new scene
                         Players[0]->setLifes(Players[0]->getLifes());
-                        CollitionsTimer->stop();
-                        this->close();
+                        CollitionsTimer->stop(); //Stop timer to start second level
+                        this->close(); //Close this level
                         return;
                     }
                 }

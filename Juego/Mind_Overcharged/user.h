@@ -34,7 +34,7 @@ private slots:
 private:
     Ui::User *ui;
 
-    string dirUser = "../Users/dirUsers.txt";
+    string dirUser = "../Users/dirUsers.txt"; //Files directions
     string dirtemp = "../Users/dirTemp.txt";
     vector <int> valuser(string nameusu, string claveusu);
 

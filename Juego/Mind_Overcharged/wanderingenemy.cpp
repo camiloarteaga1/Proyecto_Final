@@ -11,7 +11,7 @@ WanderingEnemy::WanderingEnemy(short M, short InitDirection, QGraphicsItem *pare
     MoveTimer = new QTimer;
 
     connect(MoveTimer, SIGNAL(timeout()), this, SLOT(Move()));
-    connect(MoveTimer, SIGNAL(timeout()), this, SLOT(Sprite()));
+    //connect(MoveTimer, SIGNAL(timeout()), this, SLOT(Sprite())); //Timer for the sprite movement
 
     MoveTimer->start(10);
 
@@ -49,17 +49,18 @@ void WanderingEnemy::setOnPlatform(bool Status){
     return;
 
 }
+//Enemy changes move direction
 void WanderingEnemy::setDirection(bool Direction){this->Direction = Direction;}
 
 ///************************  Slots  ************************///
-void WanderingEnemy::Move(){
+void WanderingEnemy::Move(){ //Enemy move
 
     double TResistance = AirFr;
 
     Speed.setX(Direction? 1 : -1);
 
     TResistance += GroundFr;
-    TResistance = TResistance > 1? 1 : TResistance;
+    TResistance = TResistance > 1? 1 : TResistance; //Friction with the floor
 
     Speed.setX(Speed.x() - (Speed.x() * TResistance));
     Accel -= QPointF(Accel.x() * TResistance, Accel.y() * AirFr); /// Change acceleration
@@ -91,6 +92,7 @@ void WanderingEnemy::Move(){
     return;
 }
 
+//If there's any sprite movement, include the code
 void WanderingEnemy::Sprite()
 {
     /// Sprite code
