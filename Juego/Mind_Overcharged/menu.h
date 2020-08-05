@@ -41,6 +41,7 @@ private:
 
 public:
     std::string UserName;
+    int vid, lvl;
 
 };
 

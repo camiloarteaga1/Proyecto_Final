@@ -27,12 +27,23 @@ void Menu::on_BCargar_clicked()
     nivel2 = new Nivl2();
     nivel2->show();
     this->hide();
-    /*if (user->level == 2){
+
+    /*if (lvl == 2){
         nivel2 = new Nivl2();
+        nivel2->vidas = vid;
+        nivel2->UserName = this->UserName;
         nivel2->show();
         this->hide();
-    }
-    else{
+    }*/
+
+    /*else if (lvl == 1){
+        nivel1 = new Nivl1();
+        nivel1->UserName = this->UserName;
+        nivel1->show();
+        this->hide();
+    }*/
+
+    /*else{
         QMessageBox::warning(this, "Warning", "El usuario no tiene ninguna partida guardad");
         return;
     }*/

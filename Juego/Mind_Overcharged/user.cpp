@@ -55,6 +55,8 @@ void User::on_pushButton_clicked() //Receives user data
     }
 
     cosa->UserName = name.toStdString();
+    cosa->lvl = level;
+    cosa->vid = vidas;
     cosa->show();
     this->hide();
 }
